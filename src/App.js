@@ -13,7 +13,8 @@ function App() {
     <div className='App'>
         {isAuthenticated ? (
           <>
-            {/*<Profile/>*  <LogoutButton />*/}
+            <Profile/>  
+            <LogoutButton />
             <MovieApi />
 
           </>
