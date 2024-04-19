@@ -1,3 +1,6 @@
+
+/*Autenticacion*/
+
 .loginButton, .logoutButton {
   padding: 20px 20px;
   margin: 50px;
@@ -15,6 +18,17 @@
   ;
 }
 
+.userName {
+  color:#fff;
+}
+
+.email {
+  color: #fff;
+}
+
+
+/*Aplicacion*/
+
 .App {
 text-align: center;
 display: flex;
@@ -27,20 +41,14 @@ body {
   background-color:  #0f001a;
 }
 
-.userName {
-  color:#fff;
-}
-
-.email {
-  color: #fff;
-}
-
 .moviehubLogo {
   display: flex;
   align-items: center;
   justify-content: center;
   
 }
+
+/*Api peliculas*/
 
 #tittle{
   color: white;
@@ -68,6 +76,5 @@ body {
   height: 600px;
 }
 #movieTittle {
-
   color: white;
 }
