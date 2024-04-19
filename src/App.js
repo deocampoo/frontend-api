@@ -21,7 +21,7 @@ function App() {
         ) : (
           <div>
           <Logo />
-          <LoginButton  />
+          <LoginButton  /> {/*Esto es un boton*/}
           </div>
         )}
      
