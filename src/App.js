@@ -6,22 +6,27 @@ import { LogoutButton } from './components/Logout';
 import { Profile } from './components/Profile'; 
 import  Logo    from './components/Logo';
 import MovieApi from './components/movieApi';
+import Navbar from './components/Navbar'
 function App() {
   const {isAuthenticated} = useAuth0();
 
   return (
+
+
     <div className='App'>
+
+    
         {isAuthenticated ? (
           <>
-            <Profile/>  
-            <LogoutButton />
-            <MovieApi />
+           <Navbar/>
+           <MovieApi/>
 
           </>
         ) : (
           <div>
+          <h1 className='bienvenida'>Bienvenidos a</h1>
           <Logo />
-          <LoginButton  /> {/*Esto es un boton*/}
+          <LoginButton  /> 
           </div>
         )}
      
@@ -34,4 +39,3 @@ function App() {
 
 export default App;
 
-{/*hola */}

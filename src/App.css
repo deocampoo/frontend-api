@@ -1,7 +1,7 @@
 
 /*Autenticacion*/
 
-.loginButton, .logoutButton {
+.loginButton {
   padding: 20px 20px;
   margin: 50px;
   width: 200px;
@@ -10,6 +10,19 @@
   background-color: blueviolet;
   color: #fff;
   cursor: pointer
+}
+
+.logoutButton {
+  width: 100px;
+  height: 100px;
+  height: auto;
+  margin: 20px;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  cursor: pointer;  
+  background-color: blueviolet;
+
 }
 
 
@@ -22,11 +35,6 @@
   color:#fff;
 }
 
-.email {
-  color: #fff;
-}
-
-
 /*Aplicacion*/
 
 .App {
@@ -38,15 +46,22 @@ margin-top: 100px;text-align: center;
 }
 
 body {
-  background-color:  #0f001a;
+  background-color:  #2f1847;
+}
+
+.bienvenida {
+  color: white;
+  margin-bottom: 20px;
 }
 
 .moviehubLogo {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 20px;
   
 }
+
 
 /*Api peliculas*/
 
@@ -78,3 +93,54 @@ body {
 #movieTittle {
   color: white;
 }
+
+/*Navbar*/
+
+.navbar-container {
+  background-color: #202020;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; 
+ 
+}
+.navbar-brand .moviehubLogo {
+  width: 110px; /* Ajusta el tamaño del logo */
+}
+
+.navbar-nav .nav-link {
+  font-size: 16px; /* Ajusta el tamaño de la fuente de los elementos de navegación */
+}
+
+.navbar-nav .nav-item {
+  margin-right: 10px; /* Espaciado entre elementos de navegación */
+}
+
+.profile {
+  width: 150px;
+  height: 150px;
+  height: auto;
+  margin-left: 600px;
+}
+
+.profile img{
+  width: 35px; /* Ajusta el tamaño del icono de perfil */
+  height: 35px;
+}
+.profile h2 {
+  font-size: 15px;
+  display: inline-block;
+  margin: 5px;
+
+}
+.logoutButton {
+  font-size: 16px; /* Ajusta el tamaño del texto del botón de cierre de sesión */
+}
+.logoutContainer {
+ margin-left: 10px;
+}
+
+
+
+
