@@ -17,7 +17,7 @@
   height: 100px;
   height: auto;
   margin: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
   border: none;
   color: #fff;
   cursor: pointer;  
@@ -118,11 +118,11 @@ body {
 }
 
 .profile {
-  width: 150px;
-  height: 150px;
-  height: auto;
-  margin-left: 600px;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
+
 
 .profile img{
   width: 35px; /* Ajusta el tamaño del icono de perfil */
@@ -130,8 +130,8 @@ body {
 }
 .profile h2 {
   font-size: 15px;
-  display: inline-block;
   margin: 5px;
+  display: inline-block;
 
 }
 .logoutButton {

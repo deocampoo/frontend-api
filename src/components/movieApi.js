@@ -80,6 +80,7 @@ const MovieApi = () => {
     useEffect(() => {
       fetchMovies();
     }, []);
+
   
     return (
       <div>
