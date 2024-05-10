@@ -3,8 +3,8 @@ import './App.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { LoginButton } from './components/Login';
 import  Logo    from './components/Logo';
-import MovieApi from './components/movieApi';
 import Navbar from './components/Navbar'
+import Footer from './components/Footer';
 
 
 function App() {
@@ -12,19 +12,19 @@ function App() {
 
   return (
 
-
     <div className='App'>
 
     
         {isAuthenticated ? (
           <>
            <Navbar/>
-           <MovieApi/>
+           <Footer/>
+
+   
 
           </>
         ) : (
           <div>
-          <h1 className='bienvenida'>Bienvenidos a</h1>
           <Logo />
           <LoginButton  /> 
           </div>

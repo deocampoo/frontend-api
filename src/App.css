@@ -141,6 +141,62 @@ body {
  margin-left: 10px;
 }
 
+.selected {
+  border: 2px solid white; /* Cambia el borde para resaltar la película seleccionada */
+}
 
+.media-detail {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.media-detail img {
+  width: 200px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.media-detail-info {
+  color: white;
+}
+
+.media-detail-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.media-detail-info p {
+  font-size: 1rem;
+}
+.movies-bg {
+  background-color:  #2f1847;
+
+}
+
+.home-bg {
+  background-color:  #2f1847; /* Cambia el color de fondo según tus preferencias */
+}
+
+.series-bg {
+  background-color:  #2f1847; /* Cambia el color de fondo según tus preferencias */
+}
+
+.media-details {
+  background-color: rgba(0, 0, 0, 0.5); /* Cambia el color de fondo de la sección de detalles */
+  padding: 20px; /* Ajusta el padding para darle un tamaño estándar */
+}
+
+.media-details h2 {
+  color: white; /* Cambia el color del título a blanco */
+}
+
+.media-details p {
+  color: white; /* Cambia el color del texto de la descripción a blanco */
+}
+
+.footer  {
+  background-color: #0F1014;
+}
 
 
