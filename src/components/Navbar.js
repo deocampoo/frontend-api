@@ -1,69 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LogoutButton } from './Logout';
 import Logo from './Logo';
 import { Profile } from './Profile';
 import axios from 'axios';
-
+import Home from './Home';
+import Peliculas from './Peliculas';
+import Series from './Series';
+import Watched from './Watched';
+import WatchList from './WatchList';
+import FavoriteList from './FavoriteList';
+import Search from './Search';
 
 function Navbar() {
   const [currentSection, setCurrentSection] = useState('home');
-  const [mediaList, setMediaList] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState(null); 
   const [mediaDetails, setMediaDetails] = useState(null); 
-  const loadingRef = useRef(null);
-
-  useEffect(() => {
-    const fetchMedia = async () => {
-      setLoading(true);
-      try {
-        let response;
-        if (currentSection === 'home') {
-          response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=4f5f43495afcc67e9553f6c684a82f84&page=${page}`);
-        } else {
-          response = await axios.get(`https://api.themoviedb.org/3/${currentSection === 'movies' ? 'movie' : 'tv'}/popular?api_key=4f5f43495afcc67e9553f6c684a82f84&page=${page}`);
-        }
-        setMediaList(prevList => [...prevList, ...response.data.results]);
-      } catch (error) {
-        console.error('Error fetching media:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    setPage(1);
-    setMediaList([]);
-    fetchMedia();
-  }, [currentSection, page]);
-
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1,
-    };
-
-    const observer = new IntersectionObserver(handleObserver, observerOptions);
-    if (loadingRef.current) {
-      observer.observe(loadingRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [loadingRef.current]);
-
-  const handleObserver = (entities) => {
-    const target = entities[0];
-    if (target.isIntersecting && !loading) {
-      setPage(prevPage => prevPage + 1);
-    }
-  };
 
   const handleSectionChange = (section) => {
     setCurrentSection(section);
-    setPage(1);
     setSelectedMedia(null); // Al cambiar de sección, limpiamos la película o serie seleccionada
   };
 
@@ -103,7 +57,16 @@ function Navbar() {
                 <a className={`nav-link ${currentSection === 'series' ? 'active' : ''}`} href="#" data-abc="true" onClick={() => handleSectionChange('series')}>Series</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" data-abc="true">Mis listas</a>
+                <a className={`nav-link ${currentSection === 'watched' ? 'active' : ''}`} href="#" data-abc="true" onClick={() => handleSectionChange('watched')}>Vistas</a>
+              </li>
+              <li className="nav-item">
+                <a className={`nav-link ${currentSection === 'watchlist' ? 'active' : ''}`} href="#" data-abc="true" onClick={() => handleSectionChange('watchlist')}>Por ver</a>
+              </li>
+              <li className="nav-item">
+                <a className={`nav-link ${currentSection === 'favorites' ? 'active' : ''}`} href="#" data-abc="true" onClick={() => handleSectionChange('favorites')}>Favoritas</a>
+              </li>
+              <li className="nav-item">
+                <a className={`nav-link ${currentSection === 'search' ? 'active' : ''}`} href="#" data-abc="true" onClick={() => handleSectionChange('search')}>Busqueda</a>
               </li>
             </ul>
             <ul className="navbar-nav">
@@ -117,25 +80,19 @@ function Navbar() {
           </div>
         </div>
       </nav>
-      <div className={`media-list-container ${currentSection === 'movies' ? 'movies-bg' : ''} ${currentSection === 'home' ? 'home-bg' : ''} ${currentSection === 'series' ? 'series-bg' : ''}`} style={{ width: '100%', overflowX: 'hidden' }}>
-        <div className="media-list" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px', padding: '20px', maxHeight: 'calc(100vh - 200px)', overflowY: 'auto', width: '100%' }}>
-          {mediaList.map((media, index) => (
-            <div key={index} className={`media-item ${selectedMedia === media.id ? 'selected' : ''}`} style={{ flex: '1 0 250px', maxWidth: '250px' }} onClick={() => handleMediaClick(media.id)}>
-              <img src={`https://image.tmdb.org/t/p/w500${media.poster_path}`} alt={media.title || media.name} style={{ width: '100%', height: 'auto', maxWidth: '250px' }} />
-            </div>
-          ))}
-          <div ref={loadingRef}>{loading && 'Cargando...'}</div>
+      <div className={`content-container ${currentSection === 'movies' || currentSection === 'series' || currentSection === 'home' || currentSection === 'watched' || currentSection === 'watchlist' || currentSection === 'favorites' || currentSection === 'search'? 'violet-background' : ''}`}>
+        <div className="scrollable-content">
+          {currentSection === 'home' && <Home handleMediaClick={handleMediaClick} selectedMedia={selectedMedia} mediaDetails={mediaDetails} />}
+          {currentSection === 'movies' && <Peliculas handleMediaClick={handleMediaClick} selectedMedia={selectedMedia} mediaDetails={mediaDetails} />}
+          {currentSection === 'series' && <Series handleMediaClick={handleMediaClick} selectedMedia={selectedMedia} mediaDetails={mediaDetails} />}
+          {currentSection === 'watched' && <Watched />}
+          {currentSection === 'watchlist' && <WatchList />}
+          {currentSection === 'favorites' && <FavoriteList />}
+          {currentSection=== 'search' && <Search/>}
         </div>
       </div>
-      {selectedMedia && mediaDetails && (
-        <div className="media-details" style={{ color: 'white' }}>
-          <h2 style={{ color: 'white' }}>{mediaDetails.title || mediaDetails.name}</h2>
-          <p style={{ color: 'white' }}>{mediaDetails.overview}</p>
-        </div>
-      )}
     </div>
   );
-
 }
 
 export default Navbar;
