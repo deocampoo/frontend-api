@@ -1,36 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 import { GlobalProvider } from './context/GlobalState';
 import Watchlist from './components/Watchlist';
-import {Watched} from './components/Watched';
-import {Add} from './components/Add';
+import { Watched } from './components/Watched';
+import { Add } from './components/Add';
 import Logo from './components/Logo';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import { LoginButton } from './components/Login';
+import Login from './components/Login';
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  const [authenticated, setAuthenticated] = useState(false);
 
   return (
     <GlobalProvider>
       <Router>
-        {isAuthenticated ? (
+        {authenticated ? (
           <>
-            <Navbar />
+            <Navbar setAuthenticated={setAuthenticated} />
             <Footer />
             <Routes>
-              <Route exact path="/" element={<Watchlist />} /> {/* Usa element prop para especificar el componente */}
+              <Route exact path="/" element={<Watchlist />} />
               <Route path="/add" element={<Add />} />
               <Route path="/watched" element={<Watched />} />
+              <Route path="/login" element={<Login setAuthenticated={setAuthenticated} />} />
             </Routes>
           </>
         ) : (
           <div className="App">
             <Logo />
-            <LoginButton />
+            <Login setAuthenticated={setAuthenticated} />
           </div>
         )}
       </Router>

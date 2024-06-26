@@ -1,37 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { LogoutButton } from './Logout';
+import React, { useState } from 'react';
+import LogoutButton from './Logout';
 import Logo from './Logo';
 import { Profile } from './Profile';
 import axios from 'axios';
 import Home from './Home';
 import Peliculas from './Peliculas';
 import Series from './Series';
-import {Watched} from './Watched';
+import { Watched } from './Watched';
 import Watchlist from './Watchlist';
 import FavoriteList from './FavoriteList';
 import Search from './Search';
 
-function Navbar() {
+function Navbar({ setAuthenticated }) {
   const [currentSection, setCurrentSection] = useState('home');
-  const [selectedMedia, setSelectedMedia] = useState(null); 
-  const [mediaDetails, setMediaDetails] = useState(null); 
-  
+  const [selectedMedia, setSelectedMedia] = useState(null);
+  const [mediaDetails, setMediaDetails] = useState(null);
 
   const handleSectionChange = (section) => {
     setCurrentSection(section);
-    setSelectedMedia(null); // Al cambiar de sección, limpiamos la película o serie seleccionada
+    setSelectedMedia(null);
   };
 
   const handleMediaClick = async (mediaId) => {
     try {
       let response;
       if (currentSection === 'home') {
-        // Si la sección actual es 'home', usamos un endpoint diferente para obtener los detalles de la película
         response = await axios.get(`https://api.themoviedb.org/3/movie/${mediaId}?api_key=4f5f43495afcc67e9553f6c684a82f84&language=es`);
       } else {
         response = await axios.get(`https://api.themoviedb.org/3/${currentSection === 'movies' ? 'movie' : 'tv'}/${mediaId}?api_key=4f5f43495afcc67e9553f6c684a82f84&language=es`);
       }
-      setSelectedMedia(mediaId); 
+      setSelectedMedia(mediaId);
       setMediaDetails(response.data);
     } catch (error) {
       console.error('Error fetching media details:', error);
@@ -75,7 +73,7 @@ function Navbar() {
                 <Profile />
               </li>
               <li className="nav-item">
-                <LogoutButton />
+                <LogoutButton setAuthenticated={setAuthenticated} /> {/* Pasar setAuthenticated como prop */}
               </li>
             </ul>
           </div>
@@ -89,7 +87,7 @@ function Navbar() {
           {currentSection === 'watched' && <Watched />}
           {currentSection === 'watchlist' && <Watchlist />}
           {currentSection === 'favorites' && <FavoriteList />}
-          {currentSection=== 'search' && <Search/>}
+          {currentSection === 'search' && <Search />}
         </div>
       </div>
     </div>
