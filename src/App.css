@@ -117,12 +117,46 @@ body {
   color: white;
 }
 
-.viewtrailer{
-  min-height: 700px;
+.viewtrailer {
+  min-height: 300px; /* Ajusta la altura mínima a un valor menor */
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: flex-end;
+  padding: 20px; /* Añade padding para un mejor espaciado */
+}
+
+.youtube-container {
+  width: 100%;
+  height: 100%;
+}
+
+.reproductor {
+  max-width: 640px; /* Ajusta el ancho máximo */
+  height: auto;
+  aspect-ratio: 16/9; /* Mantén la relación de aspecto */
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .viewtrailer {
+    min-height: 200px; /* Ajusta la altura mínima para pantallas más pequeñas */
+    padding: 10px; /* Ajusta el padding para pantallas más pequeñas */
+  }
+  .reproductor {
+    max-width: 100%; /* Ajusta el ancho máximo */
+  }
+}
+
+/* Media query para pantallas extra pequeñas */
+@media (max-width: 480px) {
+  .viewtrailer {
+    min-height: 150px; /* Ajusta la altura mínima para pantallas extra pequeñas */
+    padding: 5px; /* Ajusta el padding para pantallas extra pequeñas */
+  }
+  .reproductor {
+    max-width: 100%; /* Ajusta el ancho máximo */
+  }
 }
 
 .boton{
