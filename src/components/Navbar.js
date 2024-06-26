@@ -6,8 +6,8 @@ import axios from 'axios';
 import Home from './Home';
 import Peliculas from './Peliculas';
 import Series from './Series';
-import Watched from './Watched';
-import WatchList from './WatchList';
+import {Watched} from './Watched';
+import Watchlist from './Watchlist';
 import FavoriteList from './FavoriteList';
 import Search from './Search';
 
@@ -15,6 +15,7 @@ function Navbar() {
   const [currentSection, setCurrentSection] = useState('home');
   const [selectedMedia, setSelectedMedia] = useState(null); 
   const [mediaDetails, setMediaDetails] = useState(null); 
+  
 
   const handleSectionChange = (section) => {
     setCurrentSection(section);
@@ -86,7 +87,7 @@ function Navbar() {
           {currentSection === 'movies' && <Peliculas handleMediaClick={handleMediaClick} selectedMedia={selectedMedia} mediaDetails={mediaDetails} />}
           {currentSection === 'series' && <Series handleMediaClick={handleMediaClick} selectedMedia={selectedMedia} mediaDetails={mediaDetails} />}
           {currentSection === 'watched' && <Watched />}
-          {currentSection === 'watchlist' && <WatchList />}
+          {currentSection === 'watchlist' && <Watchlist />}
           {currentSection === 'favorites' && <FavoriteList />}
           {currentSection=== 'search' && <Search/>}
         </div>

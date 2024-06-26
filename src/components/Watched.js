@@ -1,48 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
+import { MovieCard } from "./MovieCard";
 
-const Watched = () => {
-    const apiUrl = "https://api.themoviedb.org/3";
-    const apiKey = "4f5f43495afcc67e9553f6c684a82f84";
-    const imagePath = "https://image.tmdb.org/t/p/original";
-    const harryPotterQuery = 'Harry Potter';
-    const maxHarryPotterMovies = 4;
+export const Watched = () => {
+  const { watched } = useContext(GlobalContext);
 
-    const [harryPotterMovies, setHarryPotterMovies] = useState([]);
+  return (
+    <div className="movie-page">
+      <div className="container">
+        <div className="header">
+          <h1 className="heading">Películas vistas</h1>
 
-    const fetchHarryPotterMovies = async () => {
-        const { data: { results } } = await axios.get(`${apiUrl}/search/movie`, {
-            params: {
-                api_key: apiKey,
-                language: 'es',
-                query: harryPotterQuery,
-            },
-        });
-
-        // Limitar el número de películas mostradas a 4
-        const limitedResults = results.slice(0, maxHarryPotterMovies);
-        setHarryPotterMovies(limitedResults);
-    };
-
-    useEffect(() => {
-        fetchHarryPotterMovies();
-    }, []);
-
-    return (
-        <div>
-            <h2 className="text-center mt-5 mb-5" style={{ color: 'white' }}>Vistas</h2>
-            <div className="container mt-3">
-                <div className="row">
-                    {harryPotterMovies.map((movie) => (
-                        <div key={movie.id} className="col-md-4 mb-3">
-                            <img src={`${imagePath}${movie.poster_path}`} alt={movie.title} height={600} width="100%" />
-                            <h4 className="text-center" style={{ color: 'white' }}>{movie.title}</h4>
-                        </div>
-                    ))}
-                </div>
-            </div>
+          <span className="count-pill">
+            {watched.length} {watched.length === 1 ? "Movie" : "Movies"}
+          </span>
         </div>
-    );
-}
 
-export default Watched;
+        {watched.length > 0 ? (
+          <div className="movie-grid">
+            {watched.map((movie) => (
+              <MovieCard movie={movie} key={movie.id} type="watched" />
+            ))}
+          </div>
+        ) : (
+          <h2 className="no-movies">No movies in your list! Add some!</h2>
+        )}
+      </div>
+    </div>
+  );
+};

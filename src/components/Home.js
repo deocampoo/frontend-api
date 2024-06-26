@@ -1,76 +1,95 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import YouTube from 'react-youtube';
+import { GlobalContext } from "../context/GlobalState";
+import ResultCard from "./ResultCard"; // Importar correctamente ResultCard
+
 
 const Home = () => {
-
     const apiUrl = "https://api.themoviedb.org/3";
     const apiKey = "4f5f43495afcc67e9553f6c684a82f84";
     const imagePath = "https://image.tmdb.org/t/p/original";
-
-    // endpoint para las imágenes
     const urlImage = "https://image.tmdb.org/t/p/original";
 
-    // variables de estado
+
+    const { addMovieToWatchlist, addMovieToWatched, watchlist, watched } = useContext(GlobalContext);
+
+
     const [movies, setMovies] = useState([]);
-    // const [selectedMovie, setSelectedMovie] = useState({})
     const [trailer, setTrailer] = useState(null);
     const [movie, setMovie] = useState({ title: "Cargando películas" });
     const [playing, setPlaying] = useState(false);
 
-    // función para realizar la petición get a la API
+
+    let storedMovie = watchlist.find((o) => o.id === movie.id);
+    let storedMovieWatched = watched.find((o) => o.id === movie.id);
+
+
+    const watchlistDisabled = storedMovie
+    ? true
+    : storedMovieWatched
+    ? true
+    : false;
+
+
+    const watchedDisabled = storedMovieWatched ? true : false;
+
+
     const fetchMovies = async () => {
-        const {
-            data: { results },
-        } = await axios.get(`${apiUrl}/discover/movie`, {
+        const { data: { results } } = await axios.get(`${apiUrl}/discover/movie`, {
             params: {
                 api_key: apiKey,
-                language: 'es', // Cambio de idioma a español
+                language: 'es',
             },
         });
 
+
         setMovies(results);
         setMovie(results[0]);
+
 
         if (results.length) {
             await fetchMovie(results[0].id);
         }
     };
 
-    // función para la petición de un solo objeto y mostrar en reproductor de videos
+
     const fetchMovie = async (id) => {
         const { data } = await axios.get(`${apiUrl}/movie/${id}`, {
             params: {
                 api_key: apiKey,
                 append_to_response: "videos",
-                language: 'es', // Cambio de idioma a español
+                language: 'es',
             },
         });
 
+
         if (data.videos && data.videos.results) {
-            const trailer = data.videos.results.find(
-                (vid) => vid.name === "Official Trailer"
-            );
+            const trailer = data.videos.results.find((vid) => vid.name === "Official Trailer");
             setTrailer(trailer ? trailer : data.videos.results[0]);
         }
-        // return data
+
+
         setMovie(data);
     };
 
-    const selectMovie = async (movie) => {
-        fetchMovie(movie.id);
 
-        setMovie(movie);
+    const selectMovie = async (movieItem) => {
+        fetchMovie(movieItem.id);
+        setMovie(movieItem);
         window.scrollTo(0, 0);
     };
+
 
     useEffect(() => {
         fetchMovies();
     }, []);
 
+
     return (
         <div>
             <h2 className="text-center mt-5 mb-5" id="tittle">Movie HUB</h2>
+
 
             <div>
                 <main>
@@ -122,6 +141,24 @@ const Home = () => {
                                                 )}
                                             <h1 className="text-white">{movie.title}</h1>
                                             <p className="text-white">{movie.overview}</p>
+
+
+                                            <button
+                                            className="btn"
+                                            disabled={watchlistDisabled}
+                                            onClick={() => addMovieToWatchlist(movie)}
+                                        >
+                                            Agregar a Películas Por ver
+                                        </button>
+
+
+                                        <button
+                                            className="btn"
+                                            disabled={watchedDisabled}
+                                            onClick={() => addMovieToWatched(movie)}
+                                        >
+                                            Agregar a Películas Vistas
+                                        </button>
                                         </div>
                                     </div>
                                 )}
@@ -130,7 +167,7 @@ const Home = () => {
                 </main>
             </div>
 
-            {/* contenedor para mostrar los posters y las películas en la petición a la API */}
+
             <div className="container mt-3">
                 <div className="row">
                     {movies.map((movie) => (
@@ -152,6 +189,7 @@ const Home = () => {
             </div>
         </div>
     );
-}
+};
+
 
 export default Home;

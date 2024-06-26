@@ -101,6 +101,8 @@ body {
   z-index: 1000; 
  
 }
+
+
 .navbar-brand .moviehubLogo {
   width: 110px; /* Ajusta el tamaño del logo */
 }
@@ -152,3 +154,74 @@ body {
   background-color: #2f1847;
 }
 
+.btn {
+  padding: 10px 15px;
+  background-color: #6610f2;
+  color: white;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  border: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  line-height: 1.1;
+  margin-right: 15px; /* Añade margen a la derecha del botón */
+  margin-bottom: 10px;
+}
+
+
+.btn:hover {
+  background-color: #1aa762;
+  opacity: 1;
+  cursor: pointer;
+}
+
+
+.btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.heading{
+  color: white;
+}
+
+.count-pill{
+  color: white;
+}
+
+.ctrl-btn {
+  color: #fefefe;
+  background-color: transparent;
+  border: none;
+  transition: all 0.3s ease;
+  font-size: 1.25rem;
+  padding: 10px 20px; /* Aumentar el padding para más separación */
+  margin: 5px; /* Añadir margen alrededor de cada botón */
+  display: inline-block; /* Hacer que los botones sean elementos en línea */
+  text-align: center; /* Centrar el texto dentro del botón */
+}
+
+@media (max-width: 768px) {
+  .ctrl-btn {
+    font-size: 1rem; /* Ajustar el tamaño de fuente en dispositivos móviles */
+    padding: 8px 16px; /* Reducir el padding en dispositivos móviles */
+    margin: 3px; /* Reducir el margen en dispositivos móviles */
+  }
+}
+
+.ctrl-btn:hover {
+  background-color: #1aa762;
+  cursor: pointer;
+}
+
+.movie-page .no-movies {
+  color: #c4c4c4;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.container{
+  margin-bottom: 200px;
+}
