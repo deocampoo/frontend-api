@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 
-const LoginButton = ({ setAuthenticated }) => {
-    const [username, setUsername] = useState('');
+const LoginButton = ({ setAuthenticated, setUsername }) => { // Agregar setUsername como prop
+    const [username, setUsernameState] = useState('');
     const [password, setPassword] = useState('');
     const [resetEmail, setResetEmail] = useState('');
     const [showResetForm, setShowResetForm] = useState(false);
@@ -39,12 +39,13 @@ const LoginButton = ({ setAuthenticated }) => {
         e.preventDefault();
 
         // Simulación de autenticación básica
-       // if (username === 'user' && password === 'password') {
+        // if (username === 'user' && password === 'password') {
             setAuthenticated(true);
+            setUsername(username); // Establecer el nombre de usuario en el estado de App.js
             navigate('/'); // Redirige a la página principal después de iniciar sesión
-        //} else {
-          //  alert('Invalid credentials');
-       // }
+        // } else {
+        //    alert('Invalid credentials');
+        // }
     };
 
     const handleForgotPassword = (e) => {
@@ -79,7 +80,7 @@ const LoginButton = ({ setAuthenticated }) => {
                             name="username" 
                             placeholder="Username"
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            onChange={(e) => setUsernameState(e.target.value)}
                         />
                     </div>
                     <div className="form-group">

@@ -11,7 +11,7 @@ import Watchlist from './Watchlist';
 import FavoriteList from './FavoriteList';
 import Search from './Search';
 
-function Navbar({ setAuthenticated }) {
+function Navbar({ setAuthenticated, username }) { // Recibir username como prop
   const [currentSection, setCurrentSection] = useState('home');
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [mediaDetails, setMediaDetails] = useState(null);
@@ -70,7 +70,7 @@ function Navbar({ setAuthenticated }) {
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Profile />
+                <Profile username={username} /> {/* Pasar username a Profile */}
               </li>
               <li className="nav-item">
                 <LogoutButton setAuthenticated={setAuthenticated} /> {/* Pasar setAuthenticated como prop */}
