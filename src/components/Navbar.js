@@ -11,7 +11,7 @@ import Watchlist from './Watchlist';
 import FavoriteList from './FavoriteList';
 import Search from './Search';
 
-function Navbar({ setAuthenticated, username }) { // Recibir username como prop
+function Navbar({ setAuthenticated, username }) {
   const [currentSection, setCurrentSection] = useState('home');
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [mediaDetails, setMediaDetails] = useState(null);
@@ -70,16 +70,16 @@ function Navbar({ setAuthenticated, username }) { // Recibir username como prop
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Profile username={username} /> {/* Pasar username a Profile */}
+                <Profile username={username} />
               </li>
               <li className="nav-item">
-                <LogoutButton setAuthenticated={setAuthenticated} /> {/* Pasar setAuthenticated como prop */}
+                <LogoutButton setAuthenticated={setAuthenticated} />
               </li>
             </ul>
           </div>
         </div>
       </nav>
-      <div className={`content-container ${currentSection === 'movies' || currentSection === 'series' || currentSection === 'home' || currentSection === 'watched' || currentSection === 'watchlist' || currentSection === 'favorites' || currentSection === 'search'? 'violet-background' : ''}`}>
+      <div className={`content-container ${currentSection === 'movies' || currentSection === 'series' || currentSection === 'home' || currentSection === 'watched' || currentSection === 'watchlist' || currentSection === 'favorites' || currentSection === 'search' || currentSection === 'favoriteList' ? 'violet-background' : ''}`}>
         <div className="scrollable-content">
           {currentSection === 'home' && <Home handleMediaClick={handleMediaClick} selectedMedia={selectedMedia} mediaDetails={mediaDetails} />}
           {currentSection === 'movies' && <Peliculas handleMediaClick={handleMediaClick} selectedMedia={selectedMedia} mediaDetails={mediaDetails} />}
@@ -88,6 +88,7 @@ function Navbar({ setAuthenticated, username }) { // Recibir username como prop
           {currentSection === 'watchlist' && <Watchlist />}
           {currentSection === 'favorites' && <FavoriteList />}
           {currentSection === 'search' && <Search />}
+          {currentSection === 'favoriteList' && <FavoriteList />} {/* Renderizar FavoriteList cuando currentSection es 'favoriteList' */}
         </div>
       </div>
     </div>

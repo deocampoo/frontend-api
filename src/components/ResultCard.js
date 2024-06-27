@@ -47,22 +47,7 @@ export const ResultCard = ({ movie }) => { // Corregir para que reciba 'movie'
 
 
         <div className="controls">
-          <button
-            className="btn"
-            disabled={watchlistDisabled}
-            onClick={() => addMovieToWatchlist(movie)}
-          >
-            Add to Watchlist
-          </button>
-
-
-          <button
-            className="btn"
-            disabled={watchedDisabled}
-            onClick={() => addMovieToWatched(movie)}
-          >
-            Add to Watched
-          </button>
+         
         </div>
       </div>
     </div>

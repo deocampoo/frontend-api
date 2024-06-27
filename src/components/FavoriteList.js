@@ -1,54 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// Favorites.js
+import React, { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
+import { MovieControls } from './MovieControls';
 
+const Favorites = () => {
+  const { favorites } = useContext(GlobalContext);
 
-const FavoriteList = () => {
-    const apiUrl = "https://api.themoviedb.org/3";
-    const apiKey = "4f5f43495afcc67e9553f6c684a82f84";
-    const imagePath = "https://image.tmdb.org/t/p/original";
-    const maxMovies = 5;
-
-    const [favoriteMovies, setFavoriteMovies] = useState([]);
-
-    const fetchRandomMovies = async () => {
-        const { data: { results } } = await axios.get(`${apiUrl}/movie/now_playing`, {
-            params: {
-                api_key: apiKey,
-                language: 'es',
-            },
-        });
-
-        // Limitar el número de películas mostradas a 5
-        const randomMovies = results.slice(0, maxMovies);
-        setFavoriteMovies(randomMovies);
-        localStorage.setItem('favoriteMovies', JSON.stringify(randomMovies)); // Guardar las películas en el localStorage
-    };
-
-    useEffect(() => {
-        const storedMovies = JSON.parse(localStorage.getItem('favoriteMovies'));
-        if (storedMovies && storedMovies.length === maxMovies) {
-            setFavoriteMovies(storedMovies);
-        } else {
-            fetchRandomMovies();
-        }
-    }, []);
-
-    return (
-        <div>
-            <h2 className="text-center mt-5 mb-5" style={{ color: 'white' }}>Lista de Favoritas</h2>
-            <div className="container mt-3">
-                <div className="row">
-                    {favoriteMovies.map((movie) => (
-                        <div key={movie.id} className="col-md-4 mb-3">
-                            <img src={`${imagePath}${movie.poster_path}`} alt={movie.title} height={600} width="100%" />
-                            <h4 className="text-center" style={{ color: 'white' }}>{movie.title}</h4>
-                        </div>
-                    ))}
-                </div>
-            </div>
+  return (
+    <div className="movie-page">
+      <div className="container">
+        <div className="header">
+          <h1 className="heading">Favoritas</h1>
         </div>
-       
-    );
-}
 
-export default FavoriteList;
+        {favorites.length > 0 ? (
+          <div className="movie-grid">
+            {favorites.map((movie) => (
+              <div className="movie-card" key={movie.id}>
+                {movie.poster_path ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                    alt={`${movie.title} Poster`}
+                  />
+                ) : (
+                  <div className="filler-poster"></div>
+                )}
+                <MovieControls type="favorites" movie={movie} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <h2 className="no-movies">No hay películas en tu lista de favoritas</h2>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Favorites;

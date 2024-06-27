@@ -312,3 +312,18 @@ body {
 .container{
   margin-bottom: 200px;
 }
+
+/* Ajuste para asegurar que las páginas ocupen toda la altura de la ventana */
+.movie-page {
+  min-height: calc(100vh - 56px); /* Resta la altura del navbar */
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-grid {
+  flex: 1; /* Para que el grid ocupe el espacio disponible */
+}
+
+.container {
+  flex: 1; /* Para que el contenedor ocupe el espacio disponible */
+}

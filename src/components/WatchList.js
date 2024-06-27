@@ -23,7 +23,7 @@ const Watchlist = () => {
             ))}
           </div>
         ) : (
-          <h2 className="no-movies">No movies in your list! Add some!</h2>
+          <h2 className="no-movies">No hay películas en tu lista Por ver</h2>
         )}
       </div>
     </div>
