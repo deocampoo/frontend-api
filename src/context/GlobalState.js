@@ -4,9 +4,15 @@ import AppReducer from "./AppReducer";
 
 // Initial state
 const initialState = {
-  watchlist: localStorage.getItem("watchlist") ? JSON.parse(localStorage.getItem("watchlist")) : [],
-  watched: localStorage.getItem("watched") ? JSON.parse(localStorage.getItem("watched")) : [],
-  favorites: localStorage.getItem("favorites") ? JSON.parse(localStorage.getItem("favorites")) : [],
+  watchlist: localStorage.getItem("watchlist")
+    ? JSON.parse(localStorage.getItem("watchlist"))
+    : [],
+  watched: localStorage.getItem("watched")
+    ? JSON.parse(localStorage.getItem("watched"))
+    : [],
+  favorites: localStorage.getItem("favorites")
+    ? JSON.parse(localStorage.getItem("favorites"))
+    : [],
 };
 
 // Create context
@@ -47,6 +53,13 @@ export const GlobalProvider = (props) => {
     dispatch({ type: "REMOVE_MOVIE_FROM_FAVORITES", payload: id });
   };
 
+  const moveToWatchlist = (movie) => {
+    // Remove from watched list
+    dispatch({ type: "REMOVE_FROM_WATCHED", payload: movie.id });
+    // Add to watchlist
+    dispatch({ type: "ADD_MOVIE_TO_WATCHLIST", payload: movie });
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -59,6 +72,7 @@ export const GlobalProvider = (props) => {
         removeMovieFromWatchlist,
         removeFromWatched,
         removeMovieFromFavorites,
+        moveToWatchlist,
       }}
     >
       {props.children}
