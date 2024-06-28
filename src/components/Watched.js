@@ -9,7 +9,7 @@ export const Watched = () => {
     <div className="movie-page">
       <div className="container">
         <div className="header">
-          <h1 className="heading">Películas vistas</h1>
+          <h1 className="heading">Películas/Series vistas</h1>
 
           <span className="count-pill">
             {watched.length} {watched.length === 1 ? "Movie" : "Movies"}
