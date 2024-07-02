@@ -172,7 +172,7 @@ const Series = () => {
                 <img
                   src={`${urlImage + serie.poster_path}`}
                   alt={serie.name}
-                  height={400}  // Ajuste de altura
+                  height={450}  // Ajuste de altura
                   width={300}   // Ajuste de ancho
                   style={{ objectFit: 'cover' }}
                 />

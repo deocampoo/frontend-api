@@ -171,7 +171,7 @@ const Home = () => {
                 <img
                   src={`${urlImage + movie.poster_path}`}
                   alt=""
-                  height={400}  // Ajuste de altura
+                  height={450}  // Ajuste de altura
                   width={300}   // Ajuste de ancho
                   style={{ objectFit: 'cover' }}
                 />
