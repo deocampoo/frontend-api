@@ -40,7 +40,7 @@ function Navbar({ setAuthenticated, username }) {
     <div className="navbar-container">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#" data-abc="true"><Logo/></a>
+          <a className="navbar-brand" href="#" data-abc="true"><Logo /></a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -79,7 +79,7 @@ function Navbar({ setAuthenticated, username }) {
           </div>
         </div>
       </nav>
-      <div className={`content-container ${currentSection === 'movies' || currentSection === 'series' || currentSection === 'home' || currentSection === 'watched' || currentSection === 'watchlist' || currentSection === 'favorites' || currentSection === 'search' || currentSection === 'favoriteList' ? 'violet-background' : ''}`}>
+      <div className={`content-container ${['movies', 'series', 'home', 'watched', 'watchlist', 'favorites', 'search', 'favoriteList'].includes(currentSection) ? 'violet-background' : ''}`}>
         <div className="scrollable-content">
           {currentSection === 'home' && <Home handleMediaClick={handleMediaClick} selectedMedia={selectedMedia} mediaDetails={mediaDetails} />}
           {currentSection === 'movies' && <Peliculas handleMediaClick={handleMediaClick} selectedMedia={selectedMedia} mediaDetails={mediaDetails} />}
