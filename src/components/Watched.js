@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { MovieCard } from "./MovieCard";
-import ScrollFooter from './ScrollFooter';
 
 export const Watched = () => {
   const { watched } = useContext(GlobalContext);
 
   return (
-    <ScrollFooter>
       <div className="movie-page">
         <div className="container">
           <div className="header">
@@ -29,6 +27,5 @@ export const Watched = () => {
           )}
         </div>
       </div>
-    </ScrollFooter>
   );
 };

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import axios from 'axios';
 import YouTube from 'react-youtube';
 import { GlobalContext } from '../context/GlobalState';
-import ScrollFooter from './ScrollFooter';
 
 const Peliculas = () => {
   const apiUrl = "https://api.themoviedb.org/3";
@@ -71,7 +70,6 @@ const Peliculas = () => {
   }, []);
 
   return (
-    <ScrollFooter>
       <div>
         <h2 className="text-center mt-5 mb-5" id="tittle">Películas</h2>
 
@@ -181,7 +179,6 @@ const Peliculas = () => {
           </div>
         </div>
       </div>
-    </ScrollFooter>
   );
 }
 

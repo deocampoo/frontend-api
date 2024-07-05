@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import { MovieControls } from './MovieControls';
-import ScrollFooter from './ScrollFooter';
 
 const Favorites = () => {
   const { favorites } = useContext(GlobalContext);
 
   return (
-    <ScrollFooter>
       <div className="movie-page">
         <div className="container">
           <div className="header">
@@ -35,7 +33,6 @@ const Favorites = () => {
           )}
         </div>
       </div>
-    </ScrollFooter>
   );
 };
 

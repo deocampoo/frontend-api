@@ -91,7 +91,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
             <button className="btn btn-success btn-block btn-info" type="submit">Login</button>
           </div>
           <div className="form-group">
-            <button className="btn btn-link" onClick={() => navigate('/register')}>Register</button>
+            <button className="btn btn-success btn-block btn-info" onClick={() => navigate('/register')}>Register</button>
           </div>
           <a className="already" href="#">Terms of Use and Privacy Policy</a>
         </form>

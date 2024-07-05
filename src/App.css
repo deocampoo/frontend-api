@@ -103,10 +103,29 @@ body {
 .App {
   text-align: center;
   display: flex;
+  flex-direction: column; /* Añadido para layout en columna */
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 0; /* Ajustado a 0 para evitar margen adicional */
+  flex: 1; /* Añadido para que ocupe el espacio disponible */
 }
+
+.content {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column; /* Asegura que el contenido esté en columna */
+}
+
+footer {
+  margin-top: auto;
+  background-color: #1E242A;
+  color: #caced1;
+  padding: 4px;
+  text-align: center;
+  font-size: 12px;
+  margin-right: 17px;
+  }
 
 .moviehubLogo {
   align-items: center;
@@ -391,6 +410,7 @@ body {
   padding: 0 20px; /* Ajusta el padding si es necesario */
 }
 
+
 .navbar .navbar-brand, .navbar .nav-link {
   padding: 0; /* Ajusta el padding para alinear mejor el contenido */
 }
@@ -399,3 +419,4 @@ body {
   height: 50px; /* Ajusta la altura del logo */
   width: auto; /* Mantén la proporción del logo */
 }
+

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import LogoutButton from './Logout';
 import Logo from './Logo';
 import { Profile } from './Profile';
@@ -94,5 +95,10 @@ function Navbar({ setAuthenticated, username }) {
     </div>
   );
 }
+
+Navbar.propTypes = {
+  setAuthenticated: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
+};
 
 export default Navbar;

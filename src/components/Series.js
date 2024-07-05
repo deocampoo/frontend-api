@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import axios from 'axios';
 import YouTube from 'react-youtube';
 import { GlobalContext } from '../context/GlobalState';
-import ScrollFooter from './ScrollFooter';
 
 const Series = () => {
   const apiUrl = "https://api.themoviedb.org/3";
@@ -72,7 +71,6 @@ const Series = () => {
   }, []);
 
   return (
-    <ScrollFooter>
       <div>
         <h2 className="text-center mt-5 mb-5" id="title" style={{ color: 'white' }}>Series de televisión</h2>
 
@@ -182,7 +180,6 @@ const Series = () => {
           </div>
         </div>
       </div>
-    </ScrollFooter>
   );
 }
 

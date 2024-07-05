@@ -10,11 +10,11 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Register from './components/Register';
 import Logout from './components/Logout';
-import ScrollFooter from './components/ScrollFooter';
 import Peliculas from './components/Peliculas';
 import Series from './components/Series';
 import Watchlist from './components/Watchlist';
 import Favorites from './components/FavoriteList';
+import Footer from './components/Footer';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -27,19 +27,22 @@ function App() {
         {authenticated ? (
           <>
             <Navbar setAuthenticated={setAuthenticated} username={username} /> {/* Pasar el nombre de usuario a Navbar */}
-            <ScrollFooter>
-              <Routes>
-                <Route path="/" element={<Home username={username} />} /> {/* Pasa el nombre de usuario a Home */}
-                <Route path="/add" element={<Add />} />
-                <Route path="/watched" element={<Watched />} />
-                <Route path="/logout" element={<Logout setAuthenticated={setAuthenticated} />} />
-                <Route path="/movies" element={<Peliculas />} />
-                <Route path="/series" element={<Series />} />
-                <Route path="/watchlist" element={<Watchlist />} />
-                <Route path="/favorites" element={<Favorites />} />
-                <Route path="*" element={<Navigate to="/" />} />
-              </Routes>
-            </ScrollFooter>
+            <div className="App">
+              <div className="content">
+                <Routes>
+                  <Route path="/" element={<Home username={username} />} /> {/* Pasa el nombre de usuario a Home */}
+                  <Route path="/add" element={<Add />} />
+                  <Route path="/watched" element={<Watched />} />
+                  <Route path="/logout" element={<Logout setAuthenticated={setAuthenticated} />} />
+                  <Route path="/movies" element={<Peliculas />} />
+                  <Route path="/series" element={<Series />} />
+                  <Route path="/watchlist" element={<Watchlist />} />
+                  <Route path="/favorites" element={<Favorites />} />
+                  <Route path="*" element={<Navigate to="/" />} />
+                </Routes>
+              </div>
+              <Footer />
+            </div>
           </>
         ) : (
           <Routes>
