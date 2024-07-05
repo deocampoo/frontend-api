@@ -51,11 +51,11 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
   return (
     <div className="register-photo">
       <div className="form-container">
-        {registerSuccess && <div className="success-message">User registered successfully!</div>}
+        {registerSuccess && <div className="success-message">El usuario se registro con exito!</div>}
         {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Mensaje de error */}
         <div className="image-holder"></div>
         <form method="post" onSubmit={handleLoginSubmit}>
-          <h2 className="text-center"><strong>Welcome back!</strong></h2>
+          <h2 className="text-center"><strong>Bienvenido a MovieHUB!</strong></h2>
           <div className="form-group">
             <input
               className="form-control"
@@ -71,7 +71,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
               className="form-control"
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -80,20 +80,20 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
             <div className="d-flex justify-content-between">
               <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                <label className="form-check-label" htmlFor="flexCheckDefault"> Remember me </label>
+                <label className="form-check-label" htmlFor="flexCheckDefault"> Recordarme </label>
               </div>
               <div>
-                <a href="#" className="text-info" onClick={handleForgotPassword}>Forgot Password</a>
+                <a href="#" className="text-info" onClick={handleForgotPassword}>Olvide mi contraseña</a>
               </div>
             </div>
           </div>
           <div className="form-group">
-            <button className="btn btn-success btn-block btn-info" type="submit">Login</button>
+            <button className="btn btn-success btn-block btn-info" type="submit">Iniciar sesión</button>
           </div>
           <div className="form-group">
-            <button className="btn btn-success btn-block btn-info" onClick={() => navigate('/register')}>Register</button>
+            <button className="btn btn-success btn-block btn-info" onClick={() => navigate('/register')}>Registrarse</button>
           </div>
-          <a className="already" href="#">Terms of Use and Privacy Policy</a>
+          <a className="already" href="#">Terminos de uso y politicas privadas</a>
         </form>
 
         {showResetForm && (
@@ -109,7 +109,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
               />
             </div>
             <div className="form-group">
-              <button className="btn btn-success btn-block btn-info" type="submit">Reset Password</button>
+              <button className="btn btn-success btn-block btn-info" type="submit">Resetear contraseña</button>
             </div>
           </form>
         )}
