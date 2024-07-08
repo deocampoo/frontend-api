@@ -122,7 +122,7 @@ footer {
   padding: 4px;
   text-align: center;
   font-size: 12px;
-  margin-right: 17px;
+  margin-right: 12px;
 }
 
 .moviehubLogo {
@@ -138,12 +138,12 @@ footer {
 }
 
 .viewtrailer {
-  min-height: 300px; /* Ajusta la altura mínima a un valor menor */
-  background-size: cover;
+  min-height: 300px; /* Ajusta la altura mínima según sea necesario */
+  background-size: contain; /* Ajusta el tamaño de fondo para contener */
   background-position: center;
   display: flex;
   align-items: flex-end;
-  padding: 20px; /* Añade padding para un mejor espaciado */
+  padding: 20px; /* Ajusta el padding según sea necesario */
 }
 
 .youtube-container {
@@ -210,47 +210,42 @@ footer {
 
 .navbar {
   display: flex;
-  align-items: center; /* Alinea verticalmente los ítems al centro */
-  justify-content: space-between;
-  height: 70px; /* Altura consistente del navbar */
-  padding: 0 20px; /* Padding opcional para un mejor espaciado */
+  align-items: center;
+  justify-content: flex-start; /* Alinea los ítems al inicio (izquierda) */
+  height: 70px;
+  padding: 0 20px;
+  background-color: #202020; /* Asegura que el fondo del navbar sea del mismo color */
 }
 
 .navbar .navbar-brand,
 .navbar .nav-link,
 .navbar .nav-item {
-  height: 100%; /* Asegura que los ítems llenen la altura del navbar */
+  height: 100%;
   display: flex;
-  align-items: center; /* Alinea verticalmente los ítems al centro */
-  padding: 0 15px; /* Ajusta el padding para centrar los ítems */
+  align-items: center;
+  padding: 0 15px;
   color: white;
   text-decoration: none;
 }
 
-
-.navbar .navbar-brand img {
-  height: 50px; /* Ajusta la altura del logo */
-  width: auto; /* Mantén la proporción del logo */
-}
-
 .navbar-toggler {
-  border: none; /* Remueve el borde del botón del menú hamburguesa */
+  border: none;
+  background-color: #202020; /* Asegura que el fondo del botón de menú sea del mismo color */
 }
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Ajusta el ícono del menú hamburguesa */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/* Estilos para el menú colapsado */
 .navbar-collapse {
   background-color: #202020; /* Asegura que el fondo del menú colapsado sea del mismo color que el navbar */
-  z-index: 1001; /* Asegura que el menú colapsado esté por encima del contenido */
-  width: 100%; /* Asegura que el menú ocupe todo el ancho */
+  z-index: 1001;
+  width: 100%;
 }
 
-.navbar-nav .nav-link {
-  font-size: 16px; /* Ajusta el tamaño de la fuente de los elementos de navegación */
-  padding: 15px 20px; /* Añade padding para más separación entre elementos */
+.navbar-nav {
+  display: flex;
+  flex-direction: row; /* Alinea los elementos en una fila */
 }
 
 .navbar-nav .nav-item {
@@ -258,7 +253,7 @@ footer {
 }
 
 .navbar-nav .d-lg-none .nav-item {
-  text-align: center; /* Centra el texto en el menú colapsado */
+  text-align: center;
 }
 
 .navbar-nav-me-auto{
@@ -298,15 +293,18 @@ footer {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
-  overflow-y: auto; /* Hace el menú scrolleable */
+  overflow-y: auto;
   padding-top: 70px; /* Espacio en la parte superior para el logo y navbar */
-  z-index: 1001; /* Asegura que esté por encima del contenido */
+  z-index: 1001;
+  display: flex;
+  flex-direction: column; /* Asegura que el contenido esté en columna */
 }
 
 .hamburger-menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  flex: 1; /* Permite que el contenido del menú ocupe el espacio disponible */
 }
 
 .hamburger-menu ul li {
@@ -314,24 +312,32 @@ footer {
   border-bottom: 1px solid #444; /* Línea divisoria entre ítems */
 }
 
-.hamburger-menu ul li a {
+.hamburger-menu ul li a,
+.hamburger-menu ul li span {
   color: white;
   text-decoration: none;
   font-size: 18px;
+  display: block;
 }
 
-.hamburger-menu ul li a:hover {
+.hamburger-menu ul li a:hover,
+.hamburger-menu ul li span:hover {
   background-color: #555; /* Cambia el fondo al hacer hover */
+}
+
+.logout-button-container {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
+  text-align: center;
 }
 
 .logout-button {
   font-size: 18px;
   color: white;
-  background-color:#6610f2;
+  background-color: #6610f2;
   border: none;
   padding: 15px 20px;
   cursor: pointer;
-  display: block;
   width: calc(100% - 40px); /* Ajusta el ancho del botón para que coincida con el padding */
   margin: 20px auto;
   text-align: center;
@@ -341,15 +347,17 @@ footer {
   background-color: #1aa762;
 }
 
+
+
 /* Secciones */
 .content-container {
-  overflow-y: auto; /* Para permitir el desplazamiento vertical */
-  max-height: calc(100vh - 70px); /* 70px es la altura del navbar */
-  padding-top: 70px; /* Asegura que el contenido no se superponga con el navbar */
+  overflow-y: auto;
+  max-height: calc(100vh - 70px);
+  padding-top: 70px;
 }
 
 .scrollable-content {
-  padding: 15px; /* Ajusta según sea necesario */
+  padding: 15px;
   background-color: #2f1847; /* Mantiene el fondo violeta */
 }
 
@@ -427,7 +435,6 @@ footer {
   margin-bottom: 200px;
 }
 
-/* Ajuste para asegurar que las páginas ocupen toda la altura de la ventana */
 .movie-page {
   min-height: calc(100vh - 70px); /* Resta la altura del navbar */
   display: flex;
@@ -452,294 +459,120 @@ footer {
   margin-bottom: 20px;
 }
 
+/* Estilo para el logo */
+.navbar-brand img {
+  height: 40px; /* Ajustar la altura del logo según sea necesario */
+}
 
-  .scrollable-content .viewtrailer {
-    position: relative;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-  }
-  
-  .scrollable-content .boton {
-    background-color: #6200ea;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
-  
-  /* Estilos adicionales para garantizar la consistencia del diseño */
-  /* Añadir cualquier otro estilo que sea necesario para el diseño de la aplicación */
-  
-  .navbar-toggler {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
+/* Estilo para el contenido */
+.scrollable-content {
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* Ajuste del padding y margen en elementos del navbar */
+.navbar .nav-link {
+  padding: 0 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar .nav-item {
+  margin-right: 15px;
+}
+
+/* Perfil y LogoutButton ajustes */
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile h2 {
+  font-size: 16px;
+  margin: 0;
+  color: white;
+}
+
+/* Estilos para el menú colapsado en dispositivos pequeños */
+@media (max-width: 992px) {
+  .navbar-collapse {
     background-color: #202020;
   }
-  
-  .navbar-toggler:focus,
-  .navbar-toggler:active {
-    outline: none;
-    box-shadow: none;
-  }
-  
-  /* Estilo para el logo */
-  .navbar-brand img {
-    height: 40px; /* Ajustar la altura del logo según sea necesario */
-  }
-  
-  /* Estilo para el contenido */
-  .scrollable-content {
-    overflow-y: auto;
-    padding: 20px;
-  }
-  
-  /* Ajuste del padding y margen en elementos del navbar */
-  .navbar .nav-link {
-    padding: 0 15px;
-    color: white;
-    text-decoration: none;
-  }
-  
-  .navbar .nav-item {
-    margin-right: 15px;
-  }
-  
-  /* Perfil y LogoutButton ajustes */
-  .profile {
-    display: flex;
-    align-items: center;
-  }
-  
-  .profile img {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .profile h2 {
-    font-size: 16px;
-    margin: 0;
-    color: white;
-  }
-  
-  .logoutButton {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  /* Estilos para el menú colapsado en dispositivos pequeños */
-  @media (max-width: 992px) {
-    .navbar-collapse {
-      background-color: #202020;
-    }
-  
-    .navbar-nav .nav-link {
-      padding: 10px 15px;
-    }
-  }
-  
-  /* Estilos para asegurar la consistencia del menú hamburguesa */
-  .hamburger-menu ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-  
-  .hamburger-menu ul li {
-    padding: 15px;
-    border-bottom: 1px solid #444;
-  }
-  
-  .hamburger-menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  .hamburger-menu ul li a:hover {
-    background-color: #555;
-  }
-  
-  .logout-button {
-    font-size: 18px;
-    color: white;
-    background-color: #f44336;
-    border: none;
-    padding: 15px 20px;
-    cursor: pointer;
-    display: block;
-    width: calc(100% - 40px);
-    margin: 20px auto;
-    text-align: center;
-  }
-  
-  .logout-button:hover {
-    background-color: #d32f2f;
-  }
-  
-  /* Secciones */
-  .content-container {
-    overflow-y: auto;
-    max-height: calc(100vh - 70px);
-    padding-top: 70px;
-  }
-  
-  .scrollable-content {
-    padding: 15px;
-    background-color: #2f1847;
-  }
-  
-  .violet-background {
-    background-color: #2f1847;
-  }
-  
-  .btn {
+
+  .navbar-nav .nav-link {
     padding: 10px 15px;
-    background-color: #6610f2;
-    color: white;
-    border-radius: 5px;
-    text-transform: uppercase;
-    font-weight: 700;
-    display: inline-block;
-    border: none;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    line-height: 1.1;
-    margin-right: 15px;
-    margin-bottom: 10px;
   }
-  
-  .btn:hover {
-    background-color: #1aa762;
-    opacity: 1;
-    cursor: pointer;
-  }
-  
-  .btn:disabled {
-    pointer-events: none;
-    opacity: 0.5;
-  }
-  
-  .heading {
-    color: white;
-  }
-  
-  .count-pill {
-    color: white;
-  }
-  
-  .ctrl-btn {
-    color: #fefefe;
-    background-color: transparent;
-    border: none;
-    transition: all 0.3s ease;
-    font-size: 1.25rem;
-    padding: 10px 20px;
-    margin: 5px;
-    display: inline-block;
-    text-align: center;
-  }
-  
-  @media (max-width: 768px) {
-    .ctrl-btn {
-      font-size: 1rem;
-      padding: 8px 16px;
-      margin: 3px;
-    }
-  }
-  
-  .ctrl-btn:hover {
-    background-color: #1aa762;
-    cursor: pointer;
-  }
-  
-  .movie-page .no-movies {
-    color: #c4c4c4;
-    font-size: 3rem;
-    text-align: center;
-  }
-  
-  .container {
-    margin-bottom: 200px;
-  }
-  
-  .movie-page {
-    min-height: calc(100vh - 70px);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .movie-grid {
-    flex: 1;
-  }
-  
-  .success-message {
-    color: green;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .error-message {
-    color: red;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .scrollable-content {
-    min-height: 100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .scrollable-content .container {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  .scrollable-content .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .scrollable-content img {
-    border-radius: 10px;
-  }
-  
-  .scrollable-content h3,
-  .scrollable-content h4,
-  .scrollable-content p {
-    color: white;
-  }
-  
-  .scrollable-content .viewtrailer {
-    position: relative;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-  }
-  
-  .scrollable-content .boton {
-    background-color: #6200ea;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
-  
+}
+
+/* Secciones */
+.scrollable-content {
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.scrollable-content .container {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.scrollable-content .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.scrollable-content img {
+  border-radius: 10px;
+}
+
+.scrollable-content h3,
+.scrollable-content h4,
+.scrollable-content p {
+  color: white;
+}
+
+.scrollable-content .viewtrailer {
+  position: relative;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+.scrollable-content .boton {
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+/* Estilos para la barra de desplazamiento en navegadores basados en WebKit */
+::-webkit-scrollbar {
+  width: 12px; /* Ancho de la barra de desplazamiento vertical */
+  height: 12px; /* Altura de la barra de desplazamiento horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: #202020; /* Color del fondo de la pista */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #333; /* Color del pulgar de la barra de desplazamiento */
+  border-radius: 6px; /* Redondea los bordes del pulgar */
+  border: 3px solid #202020; /* Espacio alrededor del pulgar */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color del pulgar al pasar el mouse */
+}

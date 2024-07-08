@@ -29,3 +29,5 @@ export const Watched = () => {
       </div>
   );
 };
+export default Watched;
+

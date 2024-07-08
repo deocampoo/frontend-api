@@ -122,7 +122,7 @@ const Peliculas = () => {
                           Reproducir Tráiler
                         </button>
                       ) : (
-                        "Lo siento, tráiler no disponible"
+                        <h4 style={{ color: 'white' }}>Lo siento, tráiler no disponible</h4>
                       )}
                       <h1 className="text-white">{movie.title}</h1>
                       <p className="text-white">{movie.overview}</p>

@@ -52,7 +52,7 @@ function Navbar({ setAuthenticated, username }) {
 
   return (
     <div className="navbar-container">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <a className="navbar-brand" href="#" data-abc="true"><Logo /></a>
           <button className="navbar-toggler" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-controls="navbarColor02" aria-expanded={menuOpen} aria-label="Toggle navigation">
@@ -115,20 +115,22 @@ function Navbar({ setAuthenticated, username }) {
       </div>
       {menuOpen && (
         <div className="hamburger-menu">
-          <ul>
-            <li><a href="#" onClick={() => handleSectionChange('home')}>Home</a></li>
-            <li><a href="#" onClick={() => handleSectionChange('movies')}>Películas</a></li>
-            <li><a href="#" onClick={() => handleSectionChange('series')}>Series</a></li>
-            <li><a href="#" onClick={() => handleSectionChange('watched')}>Vistas</a></li>
-            <li><a href="#" onClick={() => handleSectionChange('watchlist')}>Por ver</a></li>
-            <li><a href="#" onClick={() => handleSectionChange('favorites')}>Favoritas</a></li>
-            <li><a href="#" onClick={() => handleSectionChange('search')}>Busqueda</a></li>
-            <li className="nav-item">
-              <a className="nav-link" href="#" data-abc="true">{username}</a>
-            </li>
-          </ul>
-          <button className="logout-button" onClick={() => setAuthenticated(false)}>LOGOUT</button>
-        </div>
+  <ul>
+    <li><a href="#" onClick={() => handleSectionChange('home')}>Home</a></li>
+    <li><a href="#" onClick={() => handleSectionChange('movies')}>Películas</a></li>
+    <li><a href="#" onClick={() => handleSectionChange('series')}>Series</a></li>
+    <li><a href="#" onClick={() => handleSectionChange('watched')}>Vistas</a></li>
+    <li><a href="#" onClick={() => handleSectionChange('watchlist')}>Por ver</a></li>
+    <li><a href="#" onClick={() => handleSectionChange('favorites')}>Favoritas</a></li>
+    <li><a href="#" onClick={() => handleSectionChange('search')}>Busqueda</a></li>
+    <li><span>{username}</span></li> {/* Añadido aquí */}
+  </ul>
+  <div className="logout-button-container">
+    <button className="logout-button" onClick={() => setAuthenticated(false)}>LOGOUT</button>
+  </div>
+</div>
+
+
       )}
     </div>
   );

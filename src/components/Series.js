@@ -123,7 +123,7 @@ const Series = () => {
                           Reproducir Tráiler
                         </button>
                       ) : (
-                        "Lo siento, tráiler no disponible"
+                        <h4 style={{ color: 'white' }}>Lo siento, tráiler no disponible</h4>
                       )}
                       <h1 className="text-white">{serie.name}</h1>
                       <p className="text-white">{serie.overview}</p>
