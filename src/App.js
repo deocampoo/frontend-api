@@ -15,6 +15,7 @@ import Series from './components/Series';
 import Watchlist from './components/Watchlist';
 import Favorites from './components/FavoriteList';
 import Footer from './components/Footer';
+import Background from './components/Background';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -50,7 +51,7 @@ function App() {
               path="/login"
               element={
                 <div className="App">
-                  <Logo />
+                <Background/>
                   <Login setAuthenticated={setAuthenticated} setUsername={setUsername} registerSuccess={registerSuccess} />
                 </div>
               }
@@ -59,7 +60,7 @@ function App() {
               path="/register"
               element={
                 <div className="App">
-                  <Logo />
+                  <Background/>
                   <Register setRegisterSuccess={setRegisterSuccess} />
                 </div>
               }

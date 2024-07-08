@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import '../App.css';
 
 const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [resetEmail, setResetEmail] = useState('');
   const [showResetForm, setShowResetForm] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(''); // Estado para el mensaje de error
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleLoginSubmit = async (e) => {
@@ -51,11 +50,11 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
   return (
     <div className="register-photo">
       <div className="form-container">
-        {registerSuccess && <div className="success-message">El usuario se registro con exito!</div>}
-        {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Mensaje de error */}
+        {registerSuccess && <div className="success-message">El usuario se registró con éxito!</div>}
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
         <div className="image-holder"></div>
         <form method="post" onSubmit={handleLoginSubmit}>
-          <h2 className="text-center"><strong>Bienvenido a MovieHUB!</strong></h2>
+          <h2>Bienvenidos a MovieHUB!</h2>
           <div className="form-group">
             <input
               className="form-control"
@@ -83,7 +82,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
                 <label className="form-check-label" htmlFor="flexCheckDefault"> Recordarme </label>
               </div>
               <div>
-                <a href="#" className="text-info" onClick={handleForgotPassword}>Olvide mi contraseña</a>
+                <a href="#" className="text-info" onClick={handleForgotPassword}>Olvidé mi contraseña</a>
               </div>
             </div>
           </div>
@@ -93,7 +92,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
           <div className="form-group">
             <button className="btn btn-success btn-block btn-info" onClick={() => navigate('/register')}>Registrarse</button>
           </div>
-          <a className="already" href="#">Terminos de uso y politicas privadas</a>
+          <a className="already" href="#">Términos de uso y políticas privadas</a>
         </form>
 
         {showResetForm && (
@@ -103,7 +102,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
                 className="form-control"
                 type="email"
                 name="resetEmail"
-                placeholder="Enter your email to reset password"
+                placeholder="Ingresa tu email para resetear la contraseña"
                 value={resetEmail}
                 onChange={(e) => setResetEmail(e.target.value)}
               />
