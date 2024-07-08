@@ -28,7 +28,7 @@ const LogoutButton = ({ setAuthenticated }) => {
   return (
     <div className='logoutContainer'>
       <button className="btn btn-success btn-block btn-info" onClick={handleLogout}>
-        Logout
+        Cerrar sesion
       </button>
     </div>
   );
