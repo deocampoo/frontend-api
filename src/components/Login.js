@@ -87,10 +87,10 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
             </div>
           </div>
           <div className="form-group">
-            <button className="btn btn-success btn-block btn-info" type="submit">Iniciar sesión</button>
+            <button className="btn btn-primary btn-block" type="submit">Iniciar sesión</button>
           </div>
           <div className="form-group">
-            <button className="btn btn-success btn-block btn-info" onClick={() => navigate('/register')}>Registrarse</button>
+            <button className="btn btn-primary btn-block" onClick={() => navigate('/register')}>Registrarse</button>
           </div>
           <a className="already" href="#">Términos de uso y políticas privadas</a>
         </form>
@@ -108,7 +108,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
               />
             </div>
             <div className="form-group">
-              <button className="btn btn-success btn-block btn-info" type="submit">Resetear contraseña</button>
+              <button className="btn btn-primary btn-block" type="submit">Resetear contraseña</button>
             </div>
           </form>
         )}

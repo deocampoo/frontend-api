@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import LogoutButton from './Logout';
 import Logo from './Logo';
 import { Profile } from './Profile';
 import axios from 'axios';
@@ -12,7 +11,7 @@ import Watchlist from './Watchlist';
 import FavoriteList from './FavoriteList';
 import Search from './Search';
 
-function Navbar({ setAuthenticated, username }) {
+function Navbar({ setAuthenticated, username, handleLogout }) {
   const [currentSection, setCurrentSection] = useState('home');
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [mediaDetails, setMediaDetails] = useState(null);
@@ -87,15 +86,15 @@ function Navbar({ setAuthenticated, username }) {
                 <a className="nav-link" href="#" data-abc="true">{username}</a>
               </li>
               <li className="nav-item">
-                <LogoutButton setAuthenticated={setAuthenticated} />
+                <button className="btn logout-button" onClick={handleLogout}>Cerrar Sesión</button>
               </li>
             </ul>
-            <ul className="navbar-nav d-none d-lg-flex"> {/* Visible on large screens */}
+            <ul className="navbar-nav d-none d-lg-flex align-items-center"> {/* Visible on large screens */}
               <li className="nav-item">
-                <Profile username={username} />
+                <span className="nav-link username">{username}</span>
               </li>
               <li className="nav-item">
-                <LogoutButton setAuthenticated={setAuthenticated} />
+                <button className="btn logout-button" onClick={handleLogout}>Cerrar Sesión</button>
               </li>
             </ul>
           </div>
@@ -115,22 +114,20 @@ function Navbar({ setAuthenticated, username }) {
       </div>
       {menuOpen && (
         <div className="hamburger-menu">
-  <ul>
-    <li><a href="#" onClick={() => handleSectionChange('home')}>Home</a></li>
-    <li><a href="#" onClick={() => handleSectionChange('movies')}>Películas</a></li>
-    <li><a href="#" onClick={() => handleSectionChange('series')}>Series</a></li>
-    <li><a href="#" onClick={() => handleSectionChange('watched')}>Vistas</a></li>
-    <li><a href="#" onClick={() => handleSectionChange('watchlist')}>Por ver</a></li>
-    <li><a href="#" onClick={() => handleSectionChange('favorites')}>Favoritas</a></li>
-    <li><a href="#" onClick={() => handleSectionChange('search')}>Busqueda</a></li>
-    <li><span>{username}</span></li> {/* Añadido aquí */}
-  </ul>
-  <div className="logout-button-container">
-    <button className="logout-button" onClick={() => setAuthenticated(false)}>LOGOUT</button>
-  </div>
-</div>
-
-
+          <ul>
+            <li><a href="#" onClick={() => handleSectionChange('home')}>Home</a></li>
+            <li><a href="#" onClick={() => handleSectionChange('movies')}>Películas</a></li>
+            <li><a href="#" onClick={() => handleSectionChange('series')}>Series</a></li>
+            <li><a href="#" onClick={() => handleSectionChange('watched')}>Vistas</a></li>
+            <li><a href="#" onClick={() => handleSectionChange('watchlist')}>Por ver</a></li>
+            <li><a href="#" onClick={() => handleSectionChange('favorites')}>Favoritas</a></li>
+            <li><a href="#" onClick={() => handleSectionChange('search')}>Busqueda</a></li>
+            <li><span>{username}</span></li> {/* Añadido aquí */}
+          </ul>
+          <div className="logout-button-container">
+            <button className="logout-button" onClick={handleLogout}>LOGOUT</button>
+          </div>
+        </div>
       )}
     </div>
   );
@@ -139,6 +136,7 @@ function Navbar({ setAuthenticated, username }) {
 Navbar.propTypes = {
   setAuthenticated: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
+  handleLogout: PropTypes.func.isRequired,
 };
 
 export default Navbar;

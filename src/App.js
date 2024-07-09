@@ -22,12 +22,19 @@ function App() {
   const [username, setUsername] = useState(''); // Estado para almacenar el nombre de usuario
   const [registerSuccess, setRegisterSuccess] = useState(false); // Estado para el éxito del registro
 
+  const handleLogout = () => {
+    setAuthenticated(false);
+    setUsername('');
+    setRegisterSuccess(false); // Restablecer el estado de registro exitoso al cerrar sesión
+    localStorage.removeItem('token');
+  };
+
   return (
     <GlobalProvider>
       <Router>
         {authenticated ? (
           <>
-            <Navbar setAuthenticated={setAuthenticated} username={username} /> {/* Pasar el nombre de usuario a Navbar */}
+            <Navbar setAuthenticated={setAuthenticated} username={username} handleLogout={handleLogout} /> {/* Pasar el nombre de usuario a Navbar */}
             <div className="App">
               <div className="content">
                 <Routes>

@@ -98,7 +98,7 @@ const Register = ({ setRegisterSuccess }) => {
             {passwordError && <small className="text-danger">{passwordError}</small>}
           </div>
           <div className="form-group">
-            <button className="btn btn-success btn-block btn-info" type="submit">Registrarse</button>
+            <button className="btn btn-primary btn-block" type="submit">Registrarse</button>
           </div>
         </form>
       </div>
