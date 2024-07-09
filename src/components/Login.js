@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import Logo from './Logo';
 
 const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
   const [email, setEmail] = useState('');
@@ -9,6 +10,8 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
   const [resetEmail, setResetEmail] = useState('');
   const [showResetForm, setShowResetForm] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isEmailFocused, setEmailFocused] = useState(false);
+  const [isPasswordFocused, setPasswordFocused] = useState(false);
   const navigate = useNavigate();
 
   const handleLoginSubmit = async (e) => {
@@ -50,11 +53,11 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
   return (
     <div className="register-photo">
       <div className="form-container">
+        <Logo />
         {registerSuccess && <div className="success-message">El usuario se registró con éxito!</div>}
         {errorMessage && <div className="error-message">{errorMessage}</div>}
-        <div className="image-holder"></div>
         <form method="post" onSubmit={handleLoginSubmit}>
-          <h2>Bienvenidos a MovieHUB!</h2>
+          <h4>Inicia sesion o registrate </h4>
           <div className="form-group">
             <input
               className="form-control"
@@ -63,6 +66,12 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onFocus={() => setEmailFocused(true)}
+              onBlur={() => setEmailFocused(false)}
+              style={{ 
+                backgroundColor: isEmailFocused ? 'white' : 'transparent', 
+                color: isEmailFocused ? 'black' : '#caced1' 
+              }}
             />
           </div>
           <div className="form-group">
@@ -73,6 +82,12 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
               placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onFocus={() => setPasswordFocused(true)}
+              onBlur={() => setPasswordFocused(false)}
+              style={{ 
+                backgroundColor: isPasswordFocused ? 'white' : 'transparent', 
+                color: isPasswordFocused ? 'black' : '#caced1' 
+              }}
             />
           </div>
           <div className="form-group">

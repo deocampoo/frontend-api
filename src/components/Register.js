@@ -9,6 +9,9 @@ const Register = ({ setRegisterSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [isUsernameFocused, setUsernameFocused] = useState(false);
+  const [isEmailFocused, setEmailFocused] = useState(false);
+  const [isPasswordFocused, setPasswordFocused] = useState(false);
   const navigate = useNavigate();
 
   const validatePassword = (password) => {
@@ -19,19 +22,20 @@ const Register = ({ setRegisterSuccess }) => {
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
     if (password.length < minLength) {
-      return `Password must be at least ${minLength} characters long.`;
+      return `La contraseña debe tener al menos ${minLength} caracteres.`;
     }
     if (!hasUpperCase) {
-      return 'Password must contain at least one uppercase letter.';
+      return 'La contraseña debe tener al menos una mayuscula .';
+      
     }
     if (!hasLowerCase) {
-      return 'Password must contain at least one lowercase letter.';
+      return 'La contraseña debe tener al menos una minuscula.';
     }
     if (!hasNumbers) {
-      return 'Password must contain at least one number.';
+      return 'La contraseña debe tener al menos un numero.';
     }
     if (!hasSpecialChar) {
-      return 'Password must contain at least one special character.';
+      return 'La contraseña debe tener al menos un caracter especial.';
     }
     return null;
   };
@@ -76,6 +80,12 @@ const Register = ({ setRegisterSuccess }) => {
               placeholder="Nombre de Usuario"
               value={username}
               onChange={(e) => setUsernameState(e.target.value)}
+              onFocus={() => setUsernameFocused(true)}
+              onBlur={() => setUsernameFocused(false)}
+              style={{ 
+                backgroundColor: isUsernameFocused ? 'white' : 'transparent', 
+                color: isUsernameFocused ? 'black' : '#caced1' 
+              }}
             />
           </div>
           <div className="form-group">
@@ -85,6 +95,12 @@ const Register = ({ setRegisterSuccess }) => {
               placeholder="Correo Electrónico"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onFocus={() => setEmailFocused(true)}
+              onBlur={() => setEmailFocused(false)}
+              style={{ 
+                backgroundColor: isEmailFocused ? 'white' : 'transparent', 
+                color: isEmailFocused ? 'black' : '#caced1' 
+              }}
             />
           </div>
           <div className="form-group">
@@ -94,6 +110,12 @@ const Register = ({ setRegisterSuccess }) => {
               placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onFocus={() => setPasswordFocused(true)}
+              onBlur={() => setPasswordFocused(false)}
+              style={{ 
+                backgroundColor: isPasswordFocused ? 'white' : 'transparent', 
+                color: isPasswordFocused ? 'black' : '#caced1' 
+              }}
             />
             {passwordError && <small className="text-danger">{passwordError}</small>}
           </div>
