@@ -10,8 +10,8 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
   const [resetEmail, setResetEmail] = useState('');
   const [showResetForm, setShowResetForm] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isEmailFocused, setEmailFocused] = useState(false);
-  const [isPasswordFocused, setPasswordFocused] = useState(false);
+  const [emailPlaceholder, setEmailPlaceholder] = useState('Email');
+  const [passwordPlaceholder, setPasswordPlaceholder] = useState('Contraseña');
   const navigate = useNavigate();
 
   const handleLoginSubmit = async (e) => {
@@ -57,21 +57,17 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
         {registerSuccess && <div className="success-message">El usuario se registró con éxito!</div>}
         {errorMessage && <div className="error-message">{errorMessage}</div>}
         <form method="post" onSubmit={handleLoginSubmit}>
-          <h4>Inicia sesion o registrate </h4>
+          <h4>Inicia sesión o regístrate</h4>
           <div className="form-group">
             <input
               className="form-control"
               type="text"
               name="email"
-              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              onFocus={() => setEmailFocused(true)}
-              onBlur={() => setEmailFocused(false)}
-              style={{ 
-                backgroundColor: isEmailFocused ? 'white' : 'transparent', 
-                color: isEmailFocused ? 'black' : '#caced1' 
-              }}
+              onFocus={() => setEmailPlaceholder('')}
+              onBlur={() => setEmailPlaceholder(email ? '' : 'Email')}
+              placeholder={emailPlaceholder}
             />
           </div>
           <div className="form-group">
@@ -79,15 +75,11 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
               className="form-control"
               type="password"
               name="password"
-              placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              onFocus={() => setPasswordFocused(true)}
-              onBlur={() => setPasswordFocused(false)}
-              style={{ 
-                backgroundColor: isPasswordFocused ? 'white' : 'transparent', 
-                color: isPasswordFocused ? 'black' : '#caced1' 
-              }}
+              onFocus={() => setPasswordPlaceholder('')}
+              onBlur={() => setPasswordPlaceholder(password ? '' : 'Contraseña')}
+              placeholder={passwordPlaceholder}
             />
           </div>
           <div className="form-group">

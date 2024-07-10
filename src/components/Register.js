@@ -9,9 +9,9 @@ const Register = ({ setRegisterSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [isUsernameFocused, setUsernameFocused] = useState(false);
-  const [isEmailFocused, setEmailFocused] = useState(false);
-  const [isPasswordFocused, setPasswordFocused] = useState(false);
+  const [usernamePlaceholder, setUsernamePlaceholder] = useState('Nombre de Usuario');
+  const [emailPlaceholder, setEmailPlaceholder] = useState('Correo Electrónico');
+  const [passwordPlaceholder, setPasswordPlaceholder] = useState('Contraseña');
   const navigate = useNavigate();
 
   const validatePassword = (password) => {
@@ -25,17 +25,16 @@ const Register = ({ setRegisterSuccess }) => {
       return `La contraseña debe tener al menos ${minLength} caracteres.`;
     }
     if (!hasUpperCase) {
-      return 'La contraseña debe tener al menos una mayuscula .';
-      
+      return 'La contraseña debe tener al menos una mayúscula.';
     }
     if (!hasLowerCase) {
-      return 'La contraseña debe tener al menos una minuscula.';
+      return 'La contraseña debe tener al menos una minúscula.';
     }
     if (!hasNumbers) {
-      return 'La contraseña debe tener al menos un numero.';
+      return 'La contraseña debe tener al menos un número.';
     }
     if (!hasSpecialChar) {
-      return 'La contraseña debe tener al menos un caracter especial.';
+      return 'La contraseña debe tener al menos un carácter especial.';
     }
     return null;
   };
@@ -72,50 +71,39 @@ const Register = ({ setRegisterSuccess }) => {
       <div className="form-container">
         <div className="image-holder"></div>
         <form onSubmit={handleRegisterSubmit}>
-          <h2 className="text-center"><strong>Registrarse</strong></h2>
+          <h2 className="text-center"><strong>Bienvenido a MovieHUB!</strong></h2>
+          <h5>¿Ya te registraste?</h5>
           <div className="form-group">
             <input
               className="form-control"
               type="text"
-              placeholder="Nombre de Usuario"
+              placeholder={usernamePlaceholder}
               value={username}
               onChange={(e) => setUsernameState(e.target.value)}
-              onFocus={() => setUsernameFocused(true)}
-              onBlur={() => setUsernameFocused(false)}
-              style={{ 
-                backgroundColor: isUsernameFocused ? 'white' : 'transparent', 
-                color: isUsernameFocused ? 'black' : '#caced1' 
-              }}
+              onFocus={() => setUsernamePlaceholder('')}
+              onBlur={() => setUsernamePlaceholder(username ? '' : 'Nombre de Usuario')}
             />
           </div>
           <div className="form-group">
             <input
               className="form-control"
               type="email"
-              placeholder="Correo Electrónico"
+              placeholder={emailPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              onFocus={() => setEmailFocused(true)}
-              onBlur={() => setEmailFocused(false)}
-              style={{ 
-                backgroundColor: isEmailFocused ? 'white' : 'transparent', 
-                color: isEmailFocused ? 'black' : '#caced1' 
-              }}
+              onFocus={() => setEmailPlaceholder('')}
+              onBlur={() => setEmailPlaceholder(email ? '' : 'Correo Electrónico')}
             />
           </div>
           <div className="form-group">
             <input
               className="form-control"
               type="password"
-              placeholder="Contraseña"
+              placeholder={passwordPlaceholder}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              onFocus={() => setPasswordFocused(true)}
-              onBlur={() => setPasswordFocused(false)}
-              style={{ 
-                backgroundColor: isPasswordFocused ? 'white' : 'transparent', 
-                color: isPasswordFocused ? 'black' : '#caced1' 
-              }}
+              onFocus={() => setPasswordPlaceholder('')}
+              onBlur={() => setPasswordPlaceholder(password ? '' : 'Contraseña')}
             />
             {passwordError && <small className="text-danger">{passwordError}</small>}
           </div>
