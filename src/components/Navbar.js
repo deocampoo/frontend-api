@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Logo from './Logo';
-import { Profile } from './Profile';
 import axios from 'axios';
 import Home from './Home';
 import Peliculas from './Peliculas';
 import Series from './Series';
-import { Watched } from './Watched';
+import Watched from './Watched';
 import Watchlist from './Watchlist';
 import FavoriteList from './FavoriteList';
 import Search from './Search';
 
-function Navbar({ setAuthenticated, username, handleLogout }) {
+function Navbar({ username, handleLogout }) {
   const [currentSection, setCurrentSection] = useState('home');
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [mediaDetails, setMediaDetails] = useState(null);
@@ -20,7 +19,7 @@ function Navbar({ setAuthenticated, username, handleLogout }) {
   const handleSectionChange = (section) => {
     setCurrentSection(section);
     setSelectedMedia(null);
-    setMenuOpen(false); // Cierra el menú hamburguesa al seleccionar una sección
+    setMenuOpen(false);
   };
 
   const handleMediaClick = async (mediaId) => {
@@ -89,7 +88,7 @@ function Navbar({ setAuthenticated, username, handleLogout }) {
                 <button className="btn logout-button" onClick={handleLogout}>Cerrar Sesión</button>
               </li>
             </ul>
-            <ul className="navbar-nav d-none d-lg-flex align-items-center"> {/* Visible on large screens */}
+            <ul className="navbar-nav d-none d-lg-flex align-items-center ms-auto"> {/* Visible on large screens */}
               <li className="nav-item">
                 <span className="nav-link username">{username}</span>
               </li>
@@ -122,10 +121,10 @@ function Navbar({ setAuthenticated, username, handleLogout }) {
             <li><a href="#" onClick={() => handleSectionChange('watchlist')}>Por ver</a></li>
             <li><a href="#" onClick={() => handleSectionChange('favorites')}>Favoritas</a></li>
             <li><a href="#" onClick={() => handleSectionChange('search')}>Busqueda</a></li>
-            <li><span>{username}</span></li> {/* Añadido aquí */}
+            <li><span>{username}</span></li>
           </ul>
           <div className="logout-button-container">
-            <button className="logout-button" onClick={handleLogout}>LOGOUT</button>
+            <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
           </div>
         </div>
       )}
@@ -134,7 +133,6 @@ function Navbar({ setAuthenticated, username, handleLogout }) {
 }
 
 Navbar.propTypes = {
-  setAuthenticated: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   handleLogout: PropTypes.func.isRequired,
 };

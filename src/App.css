@@ -215,24 +215,37 @@ footer {
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Alinea los ítems al inicio (izquierda) */
+  justify-content: space-between; /* Asegura que los ítems estén alineados a los extremos */
   height: 70px;
-  padding: 0 10px; /* Cambia este valor para ajustar la posición de los elementos */
+  padding: 0 20px; /* Cambia este valor para ajustar la posición de los elementos */
   background-color: #202020; /* Asegura que el fondo del navbar sea del mismo color */
 }
 
 /* Ajustar el padding y margen en elementos del navbar */
 .navbar .nav-link {
-  padding: 0 10px; /* Cambia este valor para ajustar la posición de los enlaces */
+  padding: 0 15px; /* Cambia este valor para ajustar la posición de los enlaces */
   color: white;
   text-decoration: none;
 }
 
 .navbar .nav-item {
-  margin-right: 10px; /* Cambia este valor para ajustar el espacio entre los elementos */
+  margin-right: 15px; /* Cambia este valor para ajustar el espacio entre los elementos */
 }
 
-/* Otros estilos se mantienen igual */
+.navbar-nav {
+  display: flex;
+  flex-direction: row; /* Alinea los elementos en una fila */
+  align-items: center; /* Alinear los elementos verticalmente */
+}
+
+.navbar-nav .nav-item {
+  margin-right: 10px; /* Espaciado entre elementos de navegación */
+}
+
+.navbar-nav.ms-auto {
+  margin-left: auto; /* Asegura que el usuario y el botón de cerrar sesión estén alineados a la derecha */
+}
+
 .navbar-toggler {
   border: none;
   background-color: #202020; /* Asegura que el fondo del botón de menú sea del mismo color */
@@ -248,15 +261,6 @@ footer {
   width: 100%;
 }
 
-.navbar-nav {
-  display: flex;
-  flex-direction: row; /* Alinea los elementos en una fila */
-}
-
-.navbar-nav .nav-item {
-  margin-right: 10px; /* Espaciado entre elementos de navegación */
-}
-
 .navbar-nav .d-lg-none .nav-item {
   text-align: center;
 }
@@ -266,7 +270,7 @@ footer {
 }
 
 /* Nuevos estilos agregados para alinear mejor los elementos en el navbar */
-.navbar-nav.d-none.d-lg-flex.align-items-center .nav-item {
+.navbar-nav.d-none.d-lg-flex.align-items-center.ms-auto .nav-item {
   margin-right: 10px;
 }
 
@@ -280,11 +284,12 @@ footer {
   background-color: #6610f2;
   border: none;
   border-radius: 5px;
-  padding: 10px 15px;
+  padding: 5px 10px; /* Reducir el tamaño del botón */
   color: white;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 0.875rem; /* Ajustar el tamaño de fuente */
 }
 
 .logout-button:hover {
@@ -297,7 +302,7 @@ footer {
 }
 
 .profile img {
-  width: 35px; /* Ajusta el tamaño del icono de perfil */
+  width: 35px; /* Ajustar el tamaño del icono de perfil */
   height: 35px;
 }
 
@@ -306,10 +311,6 @@ footer {
   margin: 5px;
   display: inline-block;
   color: white;
-}
-
-.logoutButton {
-  font-size: 16px; /* Ajusta el tamaño del texto del botón de cierre de sesión */
 }
 
 .logoutContainer {
@@ -361,6 +362,8 @@ footer {
   background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
   text-align: center;
 }
+
+/*boton de cierre*/
 
 .logout-button {
   font-size: 18px;
@@ -659,7 +662,6 @@ footer {
   left: 60%;
   animation: box-animate 15s infinite;
 }
-
 
 .boxes div:nth-child(5) {
   top: 30%;

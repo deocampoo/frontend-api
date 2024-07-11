@@ -18,7 +18,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:9000/api/auth/signInUser', {
+      const response = await axios.post('http://localhost:9000/api/auth/loginUser', {
         email,
         password,
       });

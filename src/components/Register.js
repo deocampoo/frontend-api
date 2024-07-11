@@ -48,7 +48,7 @@ const Register = ({ setRegisterSuccess }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:9000/api/auth/signUpUser', {
+      const response = await axios.post('http://localhost:9000/api/auth/createUser', {
         user: username,
         email,
         password,
