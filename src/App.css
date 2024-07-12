@@ -1,4 +1,4 @@
-/* Autenticación */
+/* Autenticación y registro */
 .register-photo {
   background: #2f1847;
   padding: 80px 0;
@@ -24,7 +24,7 @@
 }
 
 .register-photo .form-container img {
-  width: 150px; /* Ajusta el tamaño del logo según sea necesario */
+  width: 150px; 
   margin-bottom: 20px;
 }
 
@@ -46,12 +46,11 @@
   text-indent: 0px;
   height: 40px;
   margin-bottom: 20px;
-  padding-right: 20px; /* Espacio adicional para el texto largo */
 }
 
 .register-photo form .form-control::placeholder {
   color: white;
-  opacity: 1; /* Para que el color se aplique correctamente */
+  opacity: 1; 
 }
 
 .register-photo form .form-check-label {
@@ -89,12 +88,26 @@
   margin-top: 20px;
 }
 
+.success-message {
+  color: green;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 /* Aplicación */
 html, body, #root, .App {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Evitar overflow en el body */
+  overflow: hidden; 
 }
 
 body {
@@ -104,23 +117,22 @@ body {
 .App {
   text-align: center;
   display: flex;
-  flex-direction: column; /* Añadido para layout en columna */
+  flex-direction: column; 
   justify-content: center;
   align-items: center;
-  margin-top: 0; /* Ajustado a 0 para evitar margen adicional */
-  flex: 1; /* Añadido para que ocupe el espacio disponible */
+  margin-top: 0; 
+  flex: 1; 
 }
 
 .content {
   flex: 1;
   overflow: auto;
   display: flex;
-  flex-direction: column; /* Asegura que el contenido esté en columna */
+  flex-direction: column; 
 }
 
 footer {
   margin-top: auto;
-  background-color: #1E242A;
   color: #caced1;
   padding: 4px;
   text-align: center;
@@ -140,13 +152,24 @@ footer {
   color: white;
 }
 
+/*boton trailer y cierre de trailer*/
+.boton { 
+  background-color: #0F1014;
+  color: white;
+  outline: none;
+  border: 1px solid white;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
 .viewtrailer {
-  min-height: 300px; /* Ajusta la altura mínima según sea necesario */
-  background-size: contain; /* Ajusta el tamaño de fondo para contener */
+  min-height: 300px; 
+  background-size: contain; 
   background-position: center;
   display: flex;
   align-items: flex-end;
-  padding: 20px; /* Ajusta el padding según sea necesario */
+  padding: 20px; 
 }
 
 .youtube-container {
@@ -155,41 +178,9 @@ footer {
 }
 
 .reproductor {
-  max-width: 640px; /* Ajusta el ancho máximo */
+  max-width: 640px; 
   height: auto;
-  aspect-ratio: 16/9; /* Mantén la relación de aspecto */
-}
-
-/* Media query para pantallas más pequeñas */
-@media (max-width: 768px) {
-  .viewtrailer {
-    min-height: 200px; /* Ajusta la altura mínima para pantallas más pequeñas */
-    padding: 10px; /* Ajusta el padding para pantallas más pequeñas */
-  }
-  .reproductor {
-    max-width: 100%; /* Ajusta el ancho máximo */
-  }
-}
-
-/* Media query para pantallas extra pequeñas */
-@media (max-width: 480px) {
-  .viewtrailer {
-    min-height: 150px; /* Ajusta la altura mínima para pantallas extra pequeñas */
-    padding: 5px; /* Ajusta el padding para pantallas extra pequeñas */
-  }
-  .reproductor {
-    max-width: 100%; /* Ajusta el ancho máximo */
-  }
-}
-
-.boton {
-  background-color: #0F1014;
-  color: white;
-  outline: none;
-  border: 1px solid white;
-  padding: 10px 15px;
-  cursor: pointer;
-  margin-bottom: 10px;
+  aspect-ratio: 16/9; 
 }
 
 .reproductor {
@@ -211,44 +202,42 @@ footer {
   z-index: 1000;
 }
 
-/* Ajustar el padding del contenedor de la navbar */
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Asegura que los ítems estén alineados a los extremos */
+  justify-content: space-between; 
   height: 70px;
-  padding: 0 20px; /* Cambia este valor para ajustar la posición de los elementos */
-  background-color: #202020; /* Asegura que el fondo del navbar sea del mismo color */
+  padding: 0 20px; 
+  background-color: #202020; 
 }
 
-/* Ajustar el padding y margen en elementos del navbar */
 .navbar .nav-link {
-  padding: 0 15px; /* Cambia este valor para ajustar la posición de los enlaces */
+  padding: 0 15px; 
   color: white;
   text-decoration: none;
 }
 
 .navbar .nav-item {
-  margin-right: 15px; /* Cambia este valor para ajustar el espacio entre los elementos */
+  margin-right: 15px; 
 }
 
 .navbar-nav {
   display: flex;
-  flex-direction: row; /* Alinea los elementos en una fila */
-  align-items: center; /* Alinear los elementos verticalmente */
+  flex-direction: row; 
+  align-items: center; 
 }
 
 .navbar-nav .nav-item {
-  margin-right: 10px; /* Espaciado entre elementos de navegación */
+  margin-right: 10px; 
 }
 
 .navbar-nav.ms-auto {
-  margin-left: auto; /* Asegura que el usuario y el botón de cerrar sesión estén alineados a la derecha */
+  margin-left: auto; 
 }
 
 .navbar-toggler {
   border: none;
-  background-color: #202020; /* Asegura que el fondo del botón de menú sea del mismo color */
+  background-color: #202020; 
 }
 
 .navbar-toggler-icon {
@@ -256,8 +245,7 @@ footer {
 }
 
 .navbar-collapse {
-  background-color: #202020; /* Asegura que el fondo del menú colapsado sea del mismo color que el navbar */
-  z-index: 1001;
+  background-color: #202020;
   width: 100%;
 }
 
@@ -269,7 +257,6 @@ footer {
   border-radius: 20px;
 }
 
-/* Nuevos estilos agregados para alinear mejor los elementos en el navbar */
 .navbar-nav.d-none.d-lg-flex.align-items-center.ms-auto .nav-item {
   margin-right: 10px;
 }
@@ -284,33 +271,19 @@ footer {
   background-color: #6610f2;
   border: none;
   border-radius: 5px;
-  padding: 5px 10px; /* Reducir el tamaño del botón */
+  padding: 10px 20px; 
   color: white;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 0.875rem; /* Ajustar el tamaño de fuente */
+  font-size: 1rem; 
+  display: inline-block; 
+  text-align: center;
+  margin: 0;
 }
 
 .logout-button:hover {
   background-color: #1aa762;
-}
-
-.profile {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.profile img {
-  width: 35px; /* Ajustar el tamaño del icono de perfil */
-  height: 35px;
-}
-
-.profile h2 {
-  font-size: 15px;
-  margin: 5px;
-  display: inline-block;
-  color: white;
 }
 
 .logoutContainer {
@@ -324,24 +297,24 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
+  background-color: rgba(0, 0, 0, 0.9);
   overflow-y: auto;
-  padding-top: 70px; /* Espacio en la parte superior para el logo y navbar */
+  padding-top: 70px;
   z-index: 1001;
   display: flex;
-  flex-direction: column; /* Asegura que el contenido esté en columna */
+  flex-direction: column;
 }
 
 .hamburger-menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex: 1; /* Permite que el contenido del menú ocupe el espacio disponible */
+  flex: 1;
 }
 
 .hamburger-menu ul li {
-  padding: 20px; /* Ajusta el padding para cada ítem del menú */
-  border-bottom: 1px solid #444; /* Línea divisoria entre ítems */
+  padding: 20px; 
+  border-bottom: 1px solid #444; 
 }
 
 .hamburger-menu ul li a,
@@ -354,31 +327,17 @@ footer {
 
 .hamburger-menu ul li a:hover,
 .hamburger-menu ul li span:hover {
-  background-color: #555; /* Cambia el fondo al hacer hover */
+  background-color: #555; 
 }
 
 .logout-button-container {
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
-  text-align: center;
-}
-
-/*boton de cierre*/
-
-.logout-button {
-  font-size: 18px;
-  color: white;
-  background-color: #6610f2;
-  border: none;
-  padding: 15px 20px;
-  cursor: pointer;
-  width: calc(100% - 40px); /* Ajusta el ancho del botón para que coincida con el padding */
-  margin: 20px auto;
-  text-align: center;
-}
-
-.logout-button:hover {
-  background-color: #1aa762;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  box-sizing: border-box; 
 }
 
 /* Secciones */
@@ -390,11 +349,11 @@ footer {
 
 .scrollable-content {
   padding: 15px;
-  background-color: #2f1847; /* Mantiene el fondo violeta */
+  background-color: #2f1847; 
 }
 
 .violet-background {
-  background-color: #2f1847;
+ background-color: #2f1847;
 }
 
 .btn {
@@ -409,7 +368,7 @@ footer {
   font-size: 1rem;
   transition: all 0.3s ease;
   line-height: 1.1;
-  margin-right: 15px; /* Añade margen a la derecha del botón */
+  margin-right: 15px; 
   margin-bottom: 10px;
 }
 
@@ -438,18 +397,10 @@ footer {
   border: none;
   transition: all 0.3s ease;
   font-size: 1.25rem;
-  padding: 10px 20px; /* Aumentar el padding para más separación */
-  margin: 5px; /* Añadir margen alrededor de cada botón */
-  display: inline-block; /* Hacer que los botones sean elementos en línea */
-  text-align: center; /* Centrar el texto dentro del botón */
-}
-
-@media (max-width: 768px) {
-  .ctrl-btn {
-    font-size: 1rem; /* Ajustar el tamaño de fuente en dispositivos móviles */
-    padding: 8px 16px; /* Reducir el padding en dispositivos móviles */
-    margin: 3px; /* Reducir el margen en dispositivos móviles */
-  }
+  padding: 10px 20px; 
+  margin: 5px; 
+  display: inline-block;
+  text-align: center; 
 }
 
 .ctrl-btn:hover {
@@ -460,7 +411,7 @@ footer {
 .movie-page .no-movies {
   color: #c4c4c4;
   font-size: 3rem;
-  text-align: center;
+  text-align: center; 
 }
 
 .container {
@@ -468,82 +419,24 @@ footer {
 }
 
 .movie-page {
-  min-height: calc(100vh - 70px); /* Resta la altura del navbar */
+  min-height: calc(100vh - 70px); 
   display: flex;
   flex-direction: column;
 }
 
 .movie-grid {
-  flex: 1; /* Para que el grid ocupe el espacio disponible */
+  flex: 1; 
 }
 
-.success-message {
-  color: green;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.error-message {
-  color: red;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Estilo para el logo */
 .navbar-brand img {
-  height: 40px; /* Ajustar la altura del logo según sea necesario */
+  height: 40px;
 }
 
-/* Estilo para el contenido */
 .scrollable-content {
   overflow-y: auto;
   padding: 20px;
 }
 
-/* Ajuste del padding y margen en elementos del navbar */
-.navbar .nav-link {
-  padding: 0 15px;
-  color: white;
-  text-decoration: none;
-}
-
-.navbar .nav-item {
-  margin-right: 15px;
-}
-
-/* Perfil y LogoutButton ajustes */
-.profile {
-  display: flex;
-  align-items: center;
-}
-
-.profile img {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.profile h2 {
-  font-size: 16px;
-  margin: 0;
-  color: white;
-}
-
-/* Estilos para el menú colapsado en dispositivos pequeños */
-@media (max-width: 992px) {
-  .navbar-collapse {
-    background-color: #202020;
-  }
-
-  .navbar-nav .nav-link {
-    padding: 10px 15px;
-  }
-}
-
-/* Secciones */
 .scrollable-content {
   min-height: 100vh;
   background-size: cover;
@@ -590,24 +483,24 @@ footer {
   margin-top: 20px;
 }
 
-/* Estilos para la barra de desplazamiento en navegadores basados en WebKit */
+/* Scroll */
 ::-webkit-scrollbar {
-  width: 12px; /* Ancho de la barra de desplazamiento vertical */
-  height: 12px; /* Altura de la barra de desplazamiento horizontal */
+  width: 12px; 
+  height: 12px; 
 }
 
 ::-webkit-scrollbar-track {
-  background: #202020; /* Color del fondo de la pista */
+  background: #202020; 
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #333; /* Color del pulgar de la barra de desplazamiento */
-  border-radius: 6px; /* Redondea los bordes del pulgar */
-  border: 3px solid #202020; /* Espacio alrededor del pulgar */
+  background-color: #333;
+  border-radius: 6px; 
+  border: 3px solid #202020;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Color del pulgar al pasar el mouse */
+  background-color: #555; 
 }
 
 * {
@@ -631,6 +524,7 @@ footer {
   opacity: 0.8;
 }
 
+/* Animaciones */
 .boxes div {
   position: absolute;
   width: 50px;
@@ -698,9 +592,238 @@ footer {
     transform: scale(0) translateY(0) rotate(0);
     opacity: 1;
   }
-
   100% {
     transform: scale(1.3) translateY(-90px) rotate(360deg);
     opacity: 0;
+  }
+}
+
+/* Home Component Responsiveness */
+.home-container {
+  padding: 20px;
+}
+
+.viewtrailer {
+  min-height: 300px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.youtube-container {
+  width: 100%;
+  height: 100%;
+}
+
+.reproductor {
+  max-width: 640px;
+  height: auto;
+  aspect-ratio: 16/9;
+}
+
+.reproductor {
+  width: 100%;
+  height: 600px;
+}
+
+.boton {
+  background-color: #0F1014;
+  color: white;
+  outline: none;
+  border: 1px solid white;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.movie-poster {
+  
+    height: auto; /* Para mantener la proporción */
+    width: 100%; /* O ajusta el ancho que prefieras */
+    object-fit: cover; /* Para cubrir completamente el contenedor */
+    border-radius: 10px; /* Añade bordes redondeados si lo deseas */
+  
+  
+}
+
+#movieTittle {
+  color: white;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .viewtrailer {
+    min-height: 250px;
+  }
+  .reproductor {
+    height: 500px;
+  }
+  .navbar {
+    padding: 0 10px; 
+  }
+  .navbar .nav-link {
+    padding: 0 10px;
+  }
+  .navbar .nav-item {
+    margin-right: 10px;
+  }
+  .logout-button {
+    padding: 8px 16px; 
+  }
+}
+
+@media (max-width: 992px) {
+  .viewtrailer {
+    min-height: 200px;
+  }
+  .reproductor {
+    height: 400px;
+  }
+  .register-photo .form-container {
+    padding: 20px 30px;
+  }
+  .register-photo form h2 {
+    font-size: 20px;
+  }
+  .register-photo form .form-control {
+    height: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .viewtrailer {
+    min-height: 150px;
+  }
+  .reproductor {
+    height: 300px;
+  }
+  .register-photo {
+    padding: 40px 0;
+  }
+  .register-photo .form-container {
+    padding: 15px 20px;
+  }
+  .register-photo form h2 {
+    font-size: 18px;
+  }
+  .register-photo form .btn-primary {
+    padding: 8px;
+  }
+  .register-photo .form-container img {
+    width: 100px;
+  }
+  .btn {
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .viewtrailer {
+      min-height: 100px; /* Reducir la altura mínima */
+      padding: 10px; /* Reducir el padding */
+    }
+  
+  .reproductor {
+    height: 200px;
+  }
+  .movie-poster {
+    height: 200px;
+  }
+  .navbar {
+    height: 60px;
+  }
+  .navbar .nav-link {
+    padding: 0 8px;
+  }
+  .navbar .nav-item {
+    margin-right: 5px;
+  }
+  .navbar-brand img {
+    height: 30px;
+  }
+  .logout-button {
+    padding: 6px 12px;
+    font-size: 0.875rem; 
+  }
+  .register-photo {
+    padding: 20px 0;
+  }
+  .register-photo .form-container {
+    padding: 10px 15px;
+  }
+  .register-photo form h2 {
+    font-size: 16px;
+  }
+  .register-photo form .btn-primary {
+    padding: 6px;
+  }
+  .register-photo .form-container img {
+    width: 80px;
+  }
+  .btn {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+  .ctrl-btn {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+  .movie-page .no-movies {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .viewtrailer {
+    min-height: 80px;
+  }
+  .reproductor {
+    height: 150px;
+  }
+  .movie-poster {
+    height: 150px;
+  }
+  .navbar {
+    height: 50px;
+  }
+  .navbar .nav-link {
+    padding: 0 5px;
+  }
+  .navbar .nav-item {
+    margin-right: 3px;
+  }
+  .navbar-brand img {
+    height: 25px;
+  }
+  .logout-button {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+  .register-photo {
+    padding: 10px 0;
+  }
+  .register-photo .form-container {
+    padding: 5px 10px;
+  }
+  .register-photo form h2 {
+    font-size: 14px;
+  }
+  .register-photo form .btn-primary {
+    padding: 4px;
+  }
+  .register-photo .form-container img {
+    width: 60px;
+  }
+  .btn {
+    padding: 4px 8px;
+  }
+  .ctrl-btn {
+    font-size: 0.875rem;
+    padding: 6px 12px;
+  }
+  .movie-page .no-movies {
+    font-size: 1.5rem;
   }
 }

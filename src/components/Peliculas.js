@@ -70,115 +70,114 @@ const Peliculas = () => {
   }, []);
 
   return (
+    <div className="peliculas-container">
+      <h2 className="text-center mt-5 mb-5" style={{ color: 'white' }}>Películas</h2>
+
       <div>
-        <h2 className="text-center mt-5 mb-5" id="tittle">Películas</h2>
+        <main>
+          {movie ? (
+            <div
+              className="viewtrailer"
+              style={{
+                backgroundImage: `url("${imagePath}${movie.backdrop_path}")`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+              ref={movieRef}
+            >
+              {playing ? (
+                <>
+                  <YouTube
+                    videoId={trailer.key}
+                    className="reproductor container"
+                    containerClassName={"youtube-container amru"}
+                    opts={{
+                      width: "100%",
+                      height: "100%",
+                      playerVars: {
+                        autoplay: 1,
+                        controls: 0,
+                        cc_load_policy: 0,
+                        fs: 0,
+                        iv_load_policy: 0,
+                        modestbranding: 0,
+                        rel: 0,
+                        showinfo: 0,
+                      },
+                    }}
+                  />
+                  <button onClick={() => setPlaying(false)} className="boton">
+                    Cerrar
+                  </button>
+                </>
+              ) : (
+                <div className="container">
+                  <div className="">
+                    {trailer ? (
+                      <button
+                        className="boton"
+                        onClick={() => setPlaying(true)}
+                        type="button"
+                      >
+                        Reproducir Tráiler
+                      </button>
+                    ) : (
+                      <h4 style={{ color: 'white' }}>Lo siento, tráiler no disponible</h4>
+                    )}
+                    <h1 className="text-white">{movie.title}</h1>
+                    <p className="text-white">{movie.overview}</p>
 
-        <div>
-          <main>
-            {movie ? (
-              <div
-                className="viewtrailer"
-                style={{
-                  backgroundImage: `url("${imagePath}${movie.backdrop_path}")`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-                ref={movieRef}
-              >
-                {playing ? (
-                  <>
-                    <YouTube
-                      videoId={trailer.key}
-                      className="reproductor container"
-                      containerClassName={"youtube-container amru"}
-                      opts={{
-                        width: "100%",
-                        height: "100%",
-                        playerVars: {
-                          autoplay: 1,
-                          controls: 0,
-                          cc_load_policy: 0,
-                          fs: 0,
-                          iv_load_policy: 0,
-                          modestbranding: 0,
-                          rel: 0,
-                          showinfo: 0,
-                        },
-                      }}
-                    />
-                    <button onClick={() => setPlaying(false)} className="boton">
-                      Cerrar
+                    <button
+                      className="btn"
+                      disabled={watchlistDisabled}
+                      onClick={() => addMovieToWatchlist(movie)}
+                    >
+                      Agregar a Películas Por ver
                     </button>
-                  </>
-                ) : (
-                  <div className="container">
-                    <div className="">
-                      {trailer ? (
-                        <button
-                          className="boton"
-                          onClick={() => setPlaying(true)}
-                          type="button"
-                        >
-                          Reproducir Tráiler
-                        </button>
-                      ) : (
-                        <h4 style={{ color: 'white' }}>Lo siento, tráiler no disponible</h4>
-                      )}
-                      <h1 className="text-white">{movie.title}</h1>
-                      <p className="text-white">{movie.overview}</p>
 
-                      <button
-                        className="btn"
-                        disabled={watchlistDisabled}
-                        onClick={() => addMovieToWatchlist(movie)}
-                      >
-                        Agregar a Películas Por ver
-                      </button>
+                    <button
+                      className="btn"
+                      disabled={watchedDisabled}
+                      onClick={() => addMovieToWatched(movie)}
+                    >
+                      Agregar a Películas Vistas
+                    </button>
 
-                      <button
-                        className="btn"
-                        disabled={watchedDisabled}
-                        onClick={() => addMovieToWatched(movie)}
-                      >
-                        Agregar a Películas Vistas
-                      </button>
-
-                      <button
-                        className="btn"
-                        disabled={favoritesDisabled}
-                        onClick={() => addMovieToFavorites(movie)}
-                      >
-                        Agregar a Favoritas
-                      </button>
-                    </div>
+                    <button
+                      className="btn"
+                      disabled={favoritesDisabled}
+                      onClick={() => addMovieToFavorites(movie)}
+                    >
+                      Agregar a Favoritas
+                    </button>
                   </div>
-                )}
-              </div>
-            ) : null}
-          </main>
-        </div>
+                </div>
+              )}
+            </div>
+          ) : null}
+        </main>
+      </div>
 
-        <div className="container mt-3">
-          <div className="row">
-            {movies.map((movie) => (
-              <div
-                key={movie.id}
-                className="col-md-4 mb-3 d-flex flex-column align-items-center"
-                onClick={() => selectMovie(movie)}
-              >
-                <img
-                  src={`${urlImage + movie.poster_path}`}
-                  alt=""
-                  height={450}  // Ajuste de altura
-                  width={300}   // Ajuste de ancho
-                  style={{ objectFit: 'cover' }}
-                />
-                <h6 className="text-center mt-2" id='movieTittle' style={{ width: '200px' }}>{movie.title}</h6> 
-              </div>
-            ))}
-          </div>
+      <div className="container mt-3">
+        <div className="row">
+          {movies.map((movie) => (
+            <div
+              key={movie.id}
+              className="col-6 col-sm-4 col-md-3 col-lg-2 mb-3 d-flex flex-column align-items-center"
+              onClick={() => selectMovie(movie)}
+            >
+              <img
+                src={`${urlImage}${movie.poster_path}`}
+                alt=""
+                className="movie-poster"
+                style={{ width: '100%', height: 'auto' }}
+              />
+              <h6 className="text-center mt-2" style={{ color: 'white', maxWidth: '200px' }}>{movie.title}</h6>
+            </div>
+          ))}
         </div>
       </div>
+    </div>
   );
 }
 

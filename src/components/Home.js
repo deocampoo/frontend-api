@@ -1,76 +1,76 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
-import axios from 'axios';
-import YouTube from 'react-youtube';
-import { GlobalContext } from "../context/GlobalState";
+  import React, { useState, useEffect, useContext, useRef } from 'react';
+  import axios from 'axios';
+  import YouTube from 'react-youtube';
+  import { GlobalContext } from "../context/GlobalState";
 
-const Home = () => {
-  const apiUrl = "https://api.themoviedb.org/3";
-  const apiKey = "4f5f43495afcc67e9553f6c684a82f84";
-  const imagePath = "https://image.tmdb.org/t/p/original";
-  const urlImage = "https://image.tmdb.org/t/p/original";
+  const Home = () => {
+    const apiUrl = "https://api.themoviedb.org/3";
+    const apiKey = "4f5f43495afcc67e9553f6c684a82f84";
+    const imagePath = "https://image.tmdb.org/t/p/original";
+    const urlImage = "https://image.tmdb.org/t/p/original";
 
-  const { addMovieToWatchlist, addMovieToWatched, addMovieToFavorites, watchlist, watched, favorites } = useContext(GlobalContext);
+    const { addMovieToWatchlist, addMovieToWatched, addMovieToFavorites, watchlist, watched, favorites } = useContext(GlobalContext);
 
-  const [movies, setMovies] = useState([]);
-  const [trailer, setTrailer] = useState(null);
-  const [movie, setMovie] = useState({ title: "Cargando películas" });
-  const [playing, setPlaying] = useState(false);
+    const [movies, setMovies] = useState([]);
+    const [trailer, setTrailer] = useState(null);
+    const [movie, setMovie] = useState({ title: "Cargando películas" });
+    const [playing, setPlaying] = useState(false);
 
-  const movieRef = useRef(null);
+    const movieRef = useRef(null);
 
-  let storedMovie = watchlist.find((o) => o.id === movie.id);
-  let storedMovieWatched = watched.find((o) => o.id === movie.id);
-  let storedMovieFavorites = favorites.find((o) => o.id === movie.id);
+    let storedMovie = watchlist.find((o) => o.id === movie.id);
+    let storedMovieWatched = watched.find((o) => o.id === movie.id);
+    let storedMovieFavorites = favorites.find((o) => o.id === movie.id);
 
-  const watchlistDisabled = storedMovie ? true : storedMovieWatched ? true : false;
-  const watchedDisabled = storedMovieWatched ? true : false;
-  const favoritesDisabled = storedMovieFavorites ? true : false;
+    const watchlistDisabled = storedMovie ? true : storedMovieWatched ? true : false;
+    const watchedDisabled = storedMovieWatched ? true : false;
+    const favoritesDisabled = storedMovieFavorites ? true : false;
 
-  const fetchMovies = async () => {
-    const { data: { results } } = await axios.get(`${apiUrl}/discover/movie`, {
-      params: {
-        api_key: apiKey,
-        language: 'es',
-      },
-    });
+    const fetchMovies = async () => {
+      const { data: { results } } = await axios.get(`${apiUrl}/discover/movie`, {
+        params: {
+          api_key: apiKey,
+          language: 'es',
+        },
+      });
 
-    setMovies(results);
-    setMovie(results[0]);
+      setMovies(results);
+      setMovie(results[0]);
 
-    if (results.length) {
-      await fetchMovie(results[0].id);
-    }
-  };
+      if (results.length) {
+        await fetchMovie(results[0].id);
+      }
+    };
 
-  const fetchMovie = async (id) => {
-    const { data } = await axios.get(`${apiUrl}/movie/${id}`, {
-      params: {
-        api_key: apiKey,
-        append_to_response: "videos",
-        language: 'es',
-      },
-    });
+    const fetchMovie = async (id) => {
+      const { data } = await axios.get(`${apiUrl}/movie/${id}`, {
+        params: {
+          api_key: apiKey,
+          append_to_response: "videos",
+          language: 'es',
+        },
+      });
 
-    if (data.videos && data.videos.results) {
-      const trailer = data.videos.results.find((vid) => vid.name === "Official Trailer");
-      setTrailer(trailer ? trailer : data.videos.results[0]);
-    }
+      if (data.videos && data.videos.results) {
+        const trailer = data.videos.results.find((vid) => vid.name === "Official Trailer");
+        setTrailer(trailer ? trailer : data.videos.results[0]);
+      }
 
-    setMovie(data);
-  };
+      setMovie(data);
+    };
 
-  const selectMovie = async (movieItem) => {
-    await fetchMovie(movieItem.id);
-    setMovie(movieItem);
-    movieRef.current.scrollIntoView({ behavior: 'smooth' });
-  };
+    const selectMovie = async (movieItem) => {
+      await fetchMovie(movieItem.id);
+      setMovie(movieItem);
+      movieRef.current.scrollIntoView({ behavior: 'smooth' });
+    };
 
-  useEffect(() => {
-    fetchMovies();
-  }, []);
+    useEffect(() => {
+      fetchMovies();
+    }, []);
 
-  return (
-      <div>
+    return (
+      <div className="home-container">
         <h2 className="text-center mt-5 mb-5" id="tittle">Movie HUB</h2>
 
         <div>
@@ -87,25 +87,25 @@ const Home = () => {
               >
                 {playing ? (
                   <>
-                    <YouTube
-                      videoId={trailer.key}
-                      className="reproductor container"
-                      containerClassName={"youtube-container amru"}
-                      opts={{
-                        width: "100%",
-                        height: "100%",
-                        playerVars: {
-                          autoplay: 1,
-                          controls: 0,
-                          cc_load_policy: 0,
-                          fs: 0,
-                          iv_load_policy: 0,
-                          modestbranding: 0,
-                          rel: 0,
-                          showinfo: 0,
-                        },
-                      }}
-                    />
+                  <YouTube
+                  videoId={trailer.key}
+                  className="reproductor container reproductor-mobile" // Añade la clase reproductor-mobile aquí
+                  containerClassName={"youtube-container amru"}
+                  opts={{
+                  width: "100%",
+                  height: "100%",
+                  playerVars: {
+                  autoplay: 1,
+                  controls: 0,
+                  cc_load_policy: 0,
+                  fs: 0,
+                  iv_load_policy: 0,
+                  modestbranding: 0,
+                  rel: 0,
+                  showinfo: 0,
+                  },
+                }}
+                />
                     <button onClick={() => setPlaying(false)} className="boton">
                       Cerrar
                     </button>
@@ -163,24 +163,22 @@ const Home = () => {
             {movies.map((movie) => (
               <div
                 key={movie.id}
-                className="col-md-4 mb-3 d-flex flex-column align-items-center"
+                className="col-6 col-sm-4 col-md-3 col-lg-2 mb-3 d-flex flex-column align-items-center"
                 onClick={() => selectMovie(movie)}
               >
                 <img
                   src={`${urlImage + movie.poster_path}`}
                   alt=""
-                  height={450}  // Ajuste de altura
-                  width={300}   // Ajuste de ancho
-                  style={{ objectFit: 'cover' }}
+                  className="movie-poster"
                 />
-                <h6 className="text-center mt-2" id='movieTittle' style={{ width: '200px' }}>{movie.title}</h6>  
+                <h6 className="text-center mt-2" id='movieTittle'>{movie.title}</h6>  
               </div>
             ))}
           </div>
         </div>
 
       </div>
-  );
-};
+    );
+  };
 
-export default Home;
+  export default Home;
