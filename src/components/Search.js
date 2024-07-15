@@ -11,25 +11,25 @@ const Search = () => {
 
     const { addMovieToWatchlist, addMovieToWatched, addMovieToFavorites, watchlist, watched, favorites } = useContext(GlobalContext);
 
-    const [movies, setMovies] = useState([]);
+    const [results, setResults] = useState([]);
     const [searchKey, setSearchKey] = useState("");
     const [genre, setGenre] = useState("");
     const [trailer, setTrailer] = useState(null);
-    const [movie, setMovie] = useState(null);
+    const [selectedItem, setSelectedItem] = useState(null);
     const [playing, setPlaying] = useState(false);
     const [searched, setSearched] = useState(false);
 
-    const movieRef = useRef(null);
+    const itemRef = useRef(null);
 
-    let storedMovie = watchlist.find((o) => o.id === movie?.id);
-    let storedMovieWatched = watched.find((o) => o.id === movie?.id);
-    let storedMovieFavorites = favorites.find((o) => o.id === movie?.id);
+    let storedItem = watchlist.find((o) => o.id === selectedItem?.id);
+    let storedItemWatched = watched.find((o) => o.id === selectedItem?.id);
+    let storedItemFavorites = favorites.find((o) => o.id === selectedItem?.id);
 
-    const watchlistDisabled = storedMovie ? true : storedMovieWatched ? true : false;
-    const watchedDisabled = storedMovieWatched ? true : false;
-    const favoritesDisabled = storedMovieFavorites ? true : false;
+    const watchlistDisabled = storedItem ? true : storedItemWatched ? true : false;
+    const watchedDisabled = storedItemWatched ? true : false;
+    const favoritesDisabled = storedItemFavorites ? true : false;
 
-    const fetchMovies = async (searchKey, genre) => {
+    const fetchResults = async (searchKey, genre) => {
         try {
             const params = {
                 api_key: apiKey,
@@ -38,28 +38,38 @@ const Search = () => {
 
             if (searchKey) {
                 params.query = searchKey;
-                const { data: { results } } = await axios.get(`${apiUrl}/search/movie`, { params });
-                setMovies(results);
+                const movieResponse = await axios.get(`${apiUrl}/search/movie`, { params });
+                const seriesResponse = await axios.get(`${apiUrl}/search/tv`, { params });
+                const combinedResults = [
+                    ...movieResponse.data.results.map(item => ({ ...item, type: 'movie' })),
+                    ...seriesResponse.data.results.map(item => ({ ...item, type: 'tv' }))
+                ];
+                setResults(combinedResults);
                 setSearchKey(""); // Clear the search key after fetching results
-                if (results.length) {
-                    await fetchMovie(results[0].id);
+                if (combinedResults.length) {
+                    await fetchItem(combinedResults[0].id, combinedResults[0].type);
                 }
             } else if (genre) {
                 params.with_genres = genre;
-                const { data: { results } } = await axios.get(`${apiUrl}/discover/movie`, { params });
-                setMovies(results);
-                if (results.length) {
-                    await fetchMovie(results[0].id);
+                const movieResponse = await axios.get(`${apiUrl}/discover/movie`, { params });
+                const seriesResponse = await axios.get(`${apiUrl}/discover/tv`, { params });
+                const combinedResults = [
+                    ...movieResponse.data.results.map(item => ({ ...item, type: 'movie' })),
+                    ...seriesResponse.data.results.map(item => ({ ...item, type: 'tv' }))
+                ];
+                setResults(combinedResults);
+                if (combinedResults.length) {
+                    await fetchItem(combinedResults[0].id, combinedResults[0].type);
                 }
             }
         } catch (error) {
-            console.error("Error fetching movies:", error);
+            console.error("Error fetching results:", error);
         }
     };
 
-    const fetchMovie = async (id) => {
+    const fetchItem = async (id, type) => {
         try {
-            const { data } = await axios.get(`${apiUrl}/movie/${id}`, {
+            const { data } = await axios.get(`${apiUrl}/${type}/${id}`, {
                 params: {
                     api_key: apiKey,
                     append_to_response: "videos",
@@ -73,28 +83,28 @@ const Search = () => {
                 );
                 setTrailer(trailer ? trailer : data.videos.results[0]);
             }
-            setMovie(data);
+            setSelectedItem(data);
         } catch (error) {
-            console.error("Error fetching movie:", error);
+            console.error(`Error fetching ${type}:`, error);
         }
     };
 
-    const selectMovie = async (movieItem) => {
-        await fetchMovie(movieItem.id);
-        setMovie(movieItem);
+    const selectItem = async (item) => {
+        await fetchItem(item.id, item.type);
+        setSelectedItem(item);
         window.scrollTo(0, 0);
-        movieRef.current.scrollIntoView({ behavior: 'smooth' });
+        itemRef.current.scrollIntoView({ behavior: 'smooth' });
     };
 
     const searchItems = (e) => {
         e.preventDefault();
         setSearched(true);
-        fetchMovies(searchKey, genre);
+        fetchResults(searchKey, genre);
     };
 
     useEffect(() => {
         if (!searched) {
-            setMovie(null);
+            setSelectedItem(null);
         }
     }, [searched]);
 
@@ -131,7 +141,7 @@ const Search = () => {
         <div>
             <form className="container mb-4" onSubmit={searchItems} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <div style={{ marginBottom: '10px', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                    <label htmlFor="searchKey" style={{ color: 'white', marginRight: '10px' }}>Buscar película:</label>
+                    <label htmlFor="searchKey" style={{ color: 'white', marginRight: '10px' }}>Buscar:</label>
                     <input
                         id="searchKey"
                         type="text"
@@ -159,24 +169,24 @@ const Search = () => {
 
             <div className="container mt-3">
                 <div className="row">
-                    {searched && movies.length > 0 && (
+                    {searched && results.length > 0 && (
                         <div className="col-12">
-                            <h3 className="text-white">Películas</h3>
+                            <h3 className="text-white">Resultados</h3>
                             <div className="row">
-                                {movies.map((movie) => (
-                                    movie.poster_path && (
+                                {results.map((item) => (
+                                    item.poster_path && (
                                         <div
-                                            key={movie.id}
-                                            className="col-md-4 mb-3"
-                                            onClick={() => selectMovie(movie)}
+                                            key={item.id}
+                                            className="col-6 col-sm-4 col-md-3 col-lg-2 mb-3 d-flex flex-column align-items-center"
+                                            onClick={() => selectItem(item)}
                                         >
                                             <img
-                                                src={`${urlImage + movie.poster_path}`}
+                                                src={`${urlImage + item.poster_path}`}
                                                 alt=""
-                                                height={600}
-                                                width="100%"
+                                                className="movie-poster"
+                                                style={{ width: '100%', height: 'auto' }}
                                             />
-                                            <h4 className="text-center text-white">{movie.title}</h4>
+                                            <h6 className="text-center mt-2" style={{ color: 'white', maxWidth: '200px' }}>{item.title || item.name}</h6>
                                         </div>
                                     )
                                 ))}
@@ -184,7 +194,7 @@ const Search = () => {
                         </div>
                     )}
 
-                    {searched && movies.length === 0 && (
+                    {searched && results.length === 0 && (
                         <div className="col-12">
                             <h3 className="text-center text-white">No se encontraron resultados</h3>
                         </div>
@@ -192,16 +202,16 @@ const Search = () => {
                 </div>
             </div>
 
-            {searched && movie && (
+            {searched && selectedItem && (
                 <main>
                     <div
                         className="viewtrailer"
                         style={{
-                            backgroundImage: `url("${imagePath}${movie.backdrop_path}")`,
+                            backgroundImage: `url("${imagePath}${selectedItem.backdrop_path}")`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
                         }}
-                        ref={movieRef}
+                        ref={itemRef}
                     >
                         {playing ? (
                             <>
@@ -242,31 +252,31 @@ const Search = () => {
                                     ) : (
                                         <h4 style={{ color: 'white' }}>Lo siento, tráiler no disponible</h4>
                                     )}
-                                    <h1 className="text-white">{movie.title}</h1>
-                                    <p className="text-white">{movie.overview}</p>
+                                    <h1 className="text-white">{selectedItem.title || selectedItem.name}</h1>
+                                    <p className="text-white">{selectedItem.overview}</p>
 
                                     <button
                                         className="btn"
                                         disabled={watchlistDisabled}
-                                        onClick={() => addMovieToWatchlist(movie)}
+                                        onClick={() => addMovieToWatchlist(selectedItem)}
                                     >
-                                        Agregar a Películas Por ver
+                                        AGREGAR A POR VER 
                                     </button>
 
                                     <button
                                         className="btn"
                                         disabled={watchedDisabled}
-                                        onClick={() => addMovieToWatched(movie)}
+                                        onClick={() => addMovieToWatched(selectedItem)}
                                     >
-                                        Agregar a Películas Vistas
+                                        AGREGAR A VISTAS
                                     </button>
 
                                     <button
                                         className="btn"
                                         disabled={favoritesDisabled}
-                                        onClick={() => addMovieToFavorites(movie)}
+                                        onClick={() => addMovieToFavorites(selectedItem)}
                                     >
-                                        Agregar a Favoritas
+                                        AGREGAR A FAVORITAS 
                                     </button>
                                 </div>
                             </div>

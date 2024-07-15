@@ -385,6 +385,7 @@ footer {
 
 .heading {
   color: white;
+  text-align: center;
 }
 
 .count-pill {
@@ -424,8 +425,54 @@ footer {
   flex-direction: column;
 }
 
+/* Ajustes para centrar y tamaño de posters en componentes FavoriteList, Watchlist, Watched */
 .movie-grid {
-  flex: 1; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.movie-card {
+  background: #444;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  text-align: center;
+  flex: 1 1 calc(20% - 20px); 
+  max-width: calc(20% - 20px);
+}
+.movie-card img {
+  width: 100%;
+  border-bottom: 2px solid #222;
+}
+
+.filler-poster {
+  width: 100%;
+  padding-top: 150%;
+  background: #555;
+}
+
+.no-movies {
+  color: #fff;
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.heading {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.count-pill {
+  background: #f1f1f1;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin-left: 10px;
 }
 
 .navbar-brand img {
@@ -637,15 +684,11 @@ footer {
   cursor: pointer;
   margin-bottom: 10px;
 }
-
 .movie-poster {
-  
-    height: auto; /* Para mantener la proporción */
-    width: 100%; /* O ajusta el ancho que prefieras */
-    object-fit: cover; /* Para cubrir completamente el contenedor */
-    border-radius: 10px; /* Añade bordes redondeados si lo deseas */
-  
-  
+  width: 100%;
+  max-width: 150px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 #movieTittle {
@@ -690,6 +733,11 @@ footer {
   .register-photo form .form-control {
     height: 35px;
   }
+
+  .movie-card {
+    flex: 1 1 calc(50% - 20px); /* 2 columnas */
+    max-width: calc(50% - 20px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -717,14 +765,17 @@ footer {
   .btn {
     padding: 8px 12px;
   }
+  .movie-card {
+    flex: 1 1 100%; /* 1 columna */
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 576px) {
   .viewtrailer {
-      min-height: 100px; /* Reducir la altura mínima */
-      padding: 10px; /* Reducir el padding */
-    }
-  
+    min-height: 100px;
+    padding: 10px;
+  }
   .reproductor {
     height: 200px;
   }
