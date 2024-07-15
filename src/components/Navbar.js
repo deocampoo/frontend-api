@@ -19,7 +19,7 @@ function Navbar({ username, handleLogout }) {
   const handleSectionChange = (section) => {
     setCurrentSection(section);
     setSelectedMedia(null);
-    setMenuOpen(false);
+    setMenuOpen(false); // Cerrar el menú cuando se cambia de sección
   };
 
   const handleMediaClick = async (mediaId) => {
@@ -53,7 +53,14 @@ function Navbar({ username, handleLogout }) {
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <a className="navbar-brand" href="#" data-abc="true"><Logo /></a>
-          <button className="navbar-toggler" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-controls="navbarColor02" aria-expanded={menuOpen} aria-label="Toggle navigation">
+          <button
+            className="navbar-toggler"
+            type="button"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-controls="navbarColor02"
+            aria-expanded={menuOpen}
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`} id="navbarColor02">
@@ -112,7 +119,7 @@ function Navbar({ username, handleLogout }) {
         </div>
       </div>
       {menuOpen && (
-        <div className="hamburger-menu">
+        <div className="hamburger-menu show">
           <ul>
             <li><a href="#" onClick={() => handleSectionChange('home')}>Home</a></li>
             <li><a href="#" onClick={() => handleSectionChange('movies')}>Películas</a></li>
@@ -122,10 +129,8 @@ function Navbar({ username, handleLogout }) {
             <li><a href="#" onClick={() => handleSectionChange('favorites')}>Favoritas</a></li>
             <li><a href="#" onClick={() => handleSectionChange('search')}>Busqueda</a></li>
             <li><span>{username}</span></li>
+            <li><button className="btn logout-button" onClick={handleLogout}>Cerrar Sesión</button></li>
           </ul>
-          <div className="logout-button-container">
-            <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
-          </div>
         </div>
       )}
     </div>

@@ -247,7 +247,7 @@ const Search = () => {
                                             onClick={() => setPlaying(true)}
                                             type="button"
                                         >
-                                            Ver Trailer
+                                            Reproducir Tráiler
                                         </button>
                                     ) : (
                                         <h4 style={{ color: 'white' }}>Lo siento, tráiler no disponible</h4>
