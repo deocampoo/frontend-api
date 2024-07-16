@@ -1,6 +1,6 @@
-// MovieControls.js
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
+import PropTypes from "prop-types";
 
 const MovieControls = ({ type, movie }) => {
   const {
@@ -8,7 +8,6 @@ const MovieControls = ({ type, movie }) => {
     addMovieToWatched,
     moveToWatchlist,
     removeFromWatched,
-    addMovieToFavorites,
     removeMovieFromFavorites,
   } = useContext(GlobalContext);
 
@@ -65,6 +64,15 @@ const MovieControls = ({ type, movie }) => {
       )}
     </div>
   );
+};
+
+MovieControls.propTypes = {
+  type: PropTypes.string.isRequired,
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    poster_path: PropTypes.string,
+    title: PropTypes.string
+  }).isRequired
 };
 
 export { MovieControls };

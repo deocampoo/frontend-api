@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import Footer from './Footer';
 
 const ScrollFooter = ({ children }) => {
@@ -27,6 +28,10 @@ const ScrollFooter = ({ children }) => {
       {isFooterVisible && <Footer />}
     </div>
   );
+};
+
+ScrollFooter.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default ScrollFooter;

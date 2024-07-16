@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { MovieControls } from "./MovieControls";
 
 export const MovieCard = ({ movie, type }) => {
@@ -14,4 +15,13 @@ export const MovieCard = ({ movie, type }) => {
       <MovieControls type={type} movie={movie} />
     </div>
   );
+};
+
+// Definiendo los tipos de las propiedades esperadas
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+  }).isRequired,
+  type: PropTypes.string.isRequired,
 };
