@@ -1,15 +1,30 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
-import { MovieControls } from "./MovieControls";
+import React, { useContext, useEffect } from 'react';
+import { GlobalContext } from '../context/GlobalState';
+import { MovieControls } from './MovieControls';
+import {listAllMovies} from '../API/listAllWatchedMovieAPI';
+import {getUserIdFromToken} from "../utils/getUserIdFromToken"; // Importar la función para obtener el ID del usuario
 
-export const Watched = () => {
-  const { watched } = useContext(GlobalContext);
+
+
+const Watched = () => {
+  const { watched, addMovieToWatched } = useContext(GlobalContext);
+  const userId = getUserIdFromToken();
+  useEffect(() => {
+    const fetchWatchedMovies = async () => {
+      const response = await listAllMovies(userId, "watched");
+      if (response.watchedMovies) {
+        response.watchedMovies.forEach(movie => addMovieToWatched(movie));
+      }
+    };
+
+    fetchWatchedMovies();
+  }, [userId, addMovieToWatched]);
 
   return (
     <div className="movie-page">
       <div className="container">
         <div className="header">
-          <h1 className="heading">Películas/Series vistas</h1>
+          <h1 className="heading">Películas vistas</h1>
         </div>
 
         {watched.length > 0 ? (
@@ -30,7 +45,7 @@ export const Watched = () => {
             ))}
           </div>
         ) : (
-          <h2 className="no-movies">No hay películas o series en tu lista de vistas</h2>
+          <h2 className="no-movies">No hay películas en tu lista de vistas</h2>
         )}
       </div>
     </div>
