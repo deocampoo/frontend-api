@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import PropTypes from 'prop-types';
+import {jwtDecode} from 'jwt-decode';
+import loginUser from '../API/loginUserAPI'
 import Logo from './Logo';
 
 const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
@@ -18,12 +19,11 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:9000/api/auth/loginUser', {
-        email,
-        password,
-      });
-      if (response.data.token) {
-        sessionStorage.setItem('token', response.data.token); // Almacena el token en sessionStorage
+      const response = await loginUser(email, password);
+      if (response.token) {
+        const decoded = jwtDecode(response.token);
+        sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('userId', decoded.id); // Almacena el userId en sessionStorage
         setAuthenticated(true);
         setUsername(email);
         navigate('/');
@@ -64,7 +64,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
               type="text"
               id="email"
               name="email"
-              autocomplete="email"
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onFocus={() => setEmailPlaceholder('')}
@@ -78,7 +78,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
               type="password"
               id="password"
               name="password"
-              autocomplete="current-password"
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               onFocus={() => setPasswordPlaceholder('')}
@@ -114,7 +114,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
                 type="email"
                 id="resetEmail"
                 name="resetEmail"
-                autocomplete="email"
+                autoComplete="email"
                 placeholder="Ingresa tu email para resetear la contraseña"
                 value={resetEmail}
                 onChange={(e) => setResetEmail(e.target.value)}

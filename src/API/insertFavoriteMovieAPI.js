@@ -1,5 +1,5 @@
 const insertFavoriteMovie = async (userId, movie) => {
-  const response = await fetch(`/api/favorites/${userId}`, {
+  const response = await fetch(`http://localhost:9000/api/favorites/${userId}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

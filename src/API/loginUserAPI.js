@@ -1,3 +1,5 @@
+import {jwtDecode} from 'jwt-decode';
+
 const loginUser = async (email, password) => {
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -17,7 +19,15 @@ const loginUser = async (email, password) => {
   let response = await fetch("http://localhost:9000/api/auth/loginUser", requestOptions);
   let jsonData = await response.json();
 
-  return jsonData;  // Devuelve los datos de la respuesta sin almacenar el token
+  if (response.ok) {
+    console.log("Token received: ", jsonData.token);
+    sessionStorage.setItem("token", jsonData.token); // Almacena el token en sessionStorage
+    const decoded = jwtDecode(jsonData.token);
+    console.log("Decoded token: ", decoded);
+    sessionStorage.setItem("userId", decoded.id); // Almacena el userId en sessionStorage
+  }
+
+  return jsonData;
 }
 
 export default loginUser;
