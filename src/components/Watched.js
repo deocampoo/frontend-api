@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
-import { MovieControls } from "./MovieControls";
+import React, { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
+import { MovieControls } from './MovieControls';
 
-export const Watched = () => {
+const Watched = () => {
   const { watched } = useContext(GlobalContext);
 
   return (
@@ -38,4 +38,3 @@ export const Watched = () => {
 };
 
 export default Watched;
-  

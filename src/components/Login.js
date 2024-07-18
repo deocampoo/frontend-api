@@ -23,7 +23,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
         password,
       });
       if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('token', response.data.token); // Almacena el token en sessionStorage
         setAuthenticated(true);
         setUsername(email);
         navigate('/');
@@ -62,7 +62,9 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
             <input
               className="form-control"
               type="text"
+              id="email"
               name="email"
+              autocomplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onFocus={() => setEmailPlaceholder('')}
@@ -74,7 +76,9 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
             <input
               className="form-control"
               type="password"
+              id="password"
               name="password"
+              autocomplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               onFocus={() => setPasswordPlaceholder('')}
@@ -85,7 +89,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
           <div className="form-group">
             <div className="d-flex justify-content-between">
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                <input className="form-check-input" type="checkbox" id="flexCheckDefault" />
                 <label className="form-check-label" htmlFor="flexCheckDefault"> Recordarme </label>
               </div>
               <div>
@@ -108,7 +112,9 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
               <input
                 className="form-control"
                 type="email"
+                id="resetEmail"
                 name="resetEmail"
+                autocomplete="email"
                 placeholder="Ingresa tu email para resetear la contraseña"
                 value={resetEmail}
                 onChange={(e) => setResetEmail(e.target.value)}

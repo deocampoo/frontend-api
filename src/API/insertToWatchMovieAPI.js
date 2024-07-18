@@ -1,18 +1,12 @@
-const insertToWatchMovie = async (userId, movieId) => {
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", `Bearer ${sessionStorage.getItem("access-token")}`);
-  
-    let requestOptions = {
-      method: 'PUT',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-  
-    let response = await fetch(`http://localhost:9000/api/toWatch/${userId}/${movieId}`, requestOptions);
-    let jsonData = await response.json();
-  
-    return jsonData;
-  }
-  
-  export default insertToWatchMovie;
+const insertToWatchMovie = async (userId, movie) => {
+  const response = await fetch(`/api/towatch/${userId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(movie),
+  });
+  const data = await response.json();
+  return data;
+};
+export default insertToWatchMovie;

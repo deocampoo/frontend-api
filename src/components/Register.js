@@ -52,7 +52,6 @@ const Register = ({ setRegisterSuccess }) => {
         user: username,
         email,
         password,
-        recoveryAnswer: 'default'  // Ajusta este valor según tus necesidades
       });
       if (response.data.message === "User registered successfully") {
         setRegisterSuccess(true);

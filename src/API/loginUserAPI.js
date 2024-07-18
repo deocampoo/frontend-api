@@ -17,11 +17,7 @@ const loginUser = async (email, password) => {
   let response = await fetch("http://localhost:9000/api/auth/loginUser", requestOptions);
   let jsonData = await response.json();
 
-  if (response.ok) {
-    sessionStorage.setItem("access-token", jsonData.token); // Almacena el token en sessionStorage
-  }
-
-  return jsonData;
+  return jsonData;  // Devuelve los datos de la respuesta sin almacenar el token
 }
 
 export default loginUser;

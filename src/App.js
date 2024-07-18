@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { GlobalProvider } from './context/GlobalState';
-import { Watched } from './components/Watched';
+import Watched from './components/Watched';
 import { Add } from './components/Add';
 import Logo from './components/Logo';
 import Navbar from './components/Navbar';
@@ -16,17 +16,34 @@ import Watchlist from './components/Watchlist';
 import Favorites from './components/FavoriteList';
 import Footer from './components/Footer';
 import Background from './components/Background';
+import {jwtDecode} from 'jwt-decode'; // Importa correctamente
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [username, setUsername] = useState(''); // Estado para almacenar el nombre de usuario
   const [registerSuccess, setRegisterSuccess] = useState(false); // Estado para el éxito del registro
 
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        console.log(decoded); // Verifica que el campo userId está presente
+        if (decoded && decoded.id) {
+          setAuthenticated(true);
+          setUsername(decoded.email); // Asumiendo que el token tiene el campo 'email'
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
+  }, []);
+
   const handleLogout = () => {
     setAuthenticated(false);
     setUsername('');
     setRegisterSuccess(false); // Restablecer el estado de registro exitoso al cerrar sesión
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token'); // Cambiado a sessionStorage
   };
 
   return (

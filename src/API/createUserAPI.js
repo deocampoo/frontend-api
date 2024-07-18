@@ -1,11 +1,11 @@
-const createUser = async (email, password, recoveryAnswer) => {
+const createUser = async (email, password) => {
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
   let raw = JSON.stringify({
+    user: user,
     email: email,
     password: password,
-    recoveryAnswer: recoveryAnswer
   });
 
   let requestOptions = {
