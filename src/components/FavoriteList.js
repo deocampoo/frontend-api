@@ -1,22 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import { MovieControls } from './MovieControls';
-import {listAllFavoriteMovies} from '../api/listAllFavoriteMovies';
 
 const Favorites = () => {
-  const { favorites, addMovieToFavorites } = useContext(GlobalContext);
-  const userId = getUserIdFromToken(); // Usar la función para obtener el ID del usuario
-
-  useEffect(() => {
-    const fetchFavoriteMovies = async () => {
-      const response = await listAllFavoriteMovies(userId);
-      if (response.favoriteMovies) {
-        response.favoriteMovies.forEach(movie => addMovieToFavorites(movie));
-      }
-    };
-
-    fetchFavoriteMovies();
-  }, [userId, addMovieToFavorites]);
+  const { favorites } = useContext(GlobalContext);
 
   return (
     <div className="movie-page">

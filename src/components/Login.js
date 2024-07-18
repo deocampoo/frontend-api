@@ -1,13 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Logo from './Logo';
-import getUserIdFromToken from "../utils/getUserIdFromToken";
-import { GlobalContext } from '../context/GlobalState';
-import {listAllFavoriteMovies} from '../api/listAllFavoriteMovies';
-import {listAllWatchedMovies} from '../api/listAllWatchedMovies';
-import {listAllToWatchMovies} from '../api/listAllToWatchMovies';
 
 const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
   const [email, setEmail] = useState('');
@@ -18,34 +13,20 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
   const [emailPlaceholder, setEmailPlaceholder] = useState('Email');
   const [passwordPlaceholder, setPasswordPlaceholder] = useState('Contraseña');
   const navigate = useNavigate();
-  const { clearMovieLists, addMovieToFavorites, addMovieToWatchlist, addMovieToWatched } = useContext(GlobalContext);
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:9000/api/auth/loginUser', { email, password });
+      const response = await axios.post('http://localhost:9000/api/auth/loginUser', {
+        email,
+        password,
+      });
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
         setAuthenticated(true);
         setUsername(email);
         navigate('/');
-
-        // Clear any existing movie lists
-        clearMovieLists();
-
-        // Load user's movie lists
-        const userId = getUserIdFromToken();
-        if (userId) {
-          const favoriteMovies = await listAllFavoriteMovies(userId);
-          favoriteMovies.favoriteMovies.forEach(movie => addMovieToFavorites(movie));
-
-          const watchedMovies = await listAllWatchedMovies(userId);
-          watchedMovies.watchedMovies.forEach(movie => addMovieToWatched(movie));
-
-          const toWatchMovies = await listAllToWatchMovies(userId);
-          toWatchMovies.toWatchMovies.forEach(movie => addMovieToWatchlist(movie));
-        }
       } else {
         setErrorMessage('Usuario o clave incorrecta');
       }
