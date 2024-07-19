@@ -19,7 +19,7 @@ function Navbar({ username, handleLogout }) {
   const handleSectionChange = (section) => {
     setCurrentSection(section);
     setSelectedMedia(null);
-    setMenuOpen(false); // Cerrar el menú cuando se cambia de sección
+    setMenuOpen(false); 
   };
 
   const handleMediaClick = async (mediaId) => {
@@ -87,7 +87,7 @@ function Navbar({ username, handleLogout }) {
                 <a className={`nav-link ${currentSection === 'search' ? 'active' : ''}`} href="#" data-abc="true" onClick={() => handleSectionChange('search')}>Busqueda</a>
               </li>
             </ul>
-            <ul className="navbar-nav ms-auto d-lg-none"> {/* Hidden on large screens */}
+            <ul className="navbar-nav ms-auto d-lg-none"> 
               <li className="nav-item">
                 <a className="nav-link" href="#" data-abc="true">{username}</a>
               </li>
@@ -95,7 +95,7 @@ function Navbar({ username, handleLogout }) {
                 <button className="btn logout-button" onClick={handleLogout}>Cerrar Sesión</button>
               </li>
             </ul>
-            <ul className="navbar-nav d-none d-lg-flex align-items-center ms-auto"> {/* Visible on large screens */}
+            <ul className="navbar-nav d-none d-lg-flex align-items-center ms-auto"> 
               <li className="nav-item">
                 <span className="nav-link username">{username}</span>
               </li>
@@ -115,7 +115,7 @@ function Navbar({ username, handleLogout }) {
           {currentSection === 'watchlist' && <Watchlist />}
           {currentSection === 'favorites' && <FavoriteList />}
           {currentSection === 'search' && <Search />}
-          {currentSection === 'favoriteList' && <FavoriteList />} {/* Renderizar FavoriteList cuando currentSection es 'favoriteList' */}
+          {currentSection === 'favoriteList' && <FavoriteList />} 
         </div>
       </div>
       {menuOpen && (

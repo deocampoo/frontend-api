@@ -3,7 +3,7 @@ import Moment from "react-moment";
 import { GlobalContext } from "../context/GlobalState";
 
 
-export const ResultCard = ({ movie }) => { // Corregir para que reciba 'movie'
+export const ResultCard = ({ movie }) => { 
   const {
     addMovieToWatchlist,
     addMovieToWatched,

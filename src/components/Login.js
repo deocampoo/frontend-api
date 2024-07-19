@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import PropTypes from 'prop-types';
-import {jwtDecode} from 'jwt-decode';
-import loginUser from '../API/loginUserAPI'
 import Logo from './Logo';
+import { GlobalContext } from '../context/GlobalState';
 
 const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
   const [email, setEmail] = useState('');
@@ -14,18 +14,21 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
   const [emailPlaceholder, setEmailPlaceholder] = useState('Email');
   const [passwordPlaceholder, setPasswordPlaceholder] = useState('Contraseña');
   const navigate = useNavigate();
+  const { clearLists } = useContext(GlobalContext);
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await loginUser(email, password);
-      if (response.token) {
-        const decoded = jwtDecode(response.token);
-        sessionStorage.setItem('token', response.token);
-        sessionStorage.setItem('userId', decoded.id); // Almacena el userId en sessionStorage
+      const response = await axios.post('http://localhost:9000/api/auth/loginUser', {
+        email,
+        password,
+      });
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
         setAuthenticated(true);
         setUsername(email);
+        clearLists(); 
         navigate('/');
       } else {
         setErrorMessage('Usuario o clave incorrecta');
@@ -62,9 +65,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
             <input
               className="form-control"
               type="text"
-              id="email"
               name="email"
-              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onFocus={() => setEmailPlaceholder('')}
@@ -76,9 +77,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
             <input
               className="form-control"
               type="password"
-              id="password"
               name="password"
-              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               onFocus={() => setPasswordPlaceholder('')}
@@ -89,7 +88,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
           <div className="form-group">
             <div className="d-flex justify-content-between">
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="flexCheckDefault" />
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                 <label className="form-check-label" htmlFor="flexCheckDefault"> Recordarme </label>
               </div>
               <div>
@@ -112,9 +111,7 @@ const LoginButton = ({ setAuthenticated, setUsername, registerSuccess }) => {
               <input
                 className="form-control"
                 type="email"
-                id="resetEmail"
                 name="resetEmail"
-                autoComplete="email"
                 placeholder="Ingresa tu email para resetear la contraseña"
                 value={resetEmail}
                 onChange={(e) => setResetEmail(e.target.value)}

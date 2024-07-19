@@ -45,7 +45,7 @@ const Search = () => {
                     ...seriesResponse.data.results.map(item => ({ ...item, type: 'tv' }))
                 ];
                 setResults(combinedResults);
-                setSearchKey(""); // Clear the search key after fetching results
+                setSearchKey(""); 
                 if (combinedResults.length) {
                     await fetchItem(combinedResults[0].id, combinedResults[0].type);
                 }

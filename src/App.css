@@ -152,7 +152,6 @@ footer {
   color: white;
 }
 
-/*boton trailer y cierre de trailer*/
 .boton { 
   background-color: #0F1014;
   color: white;
@@ -164,14 +163,14 @@ footer {
 }
 
 .viewtrailer {
-  width: 100%; /* Ensure it takes the full width */
-  min-height: 300px; /* Same height as the container below */
+  width: 100%; 
+  min-height: 300px; 
   background-size: cover; 
   background-position: center;
   display: flex;
   align-items: flex-end;
   padding: 20px;
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  box-sizing: border-box; 
 }
 
 .youtube-container {
@@ -202,7 +201,7 @@ footer {
   top: 0;
   left: 0;
   z-index: 1000;
-  overflow-x: auto; /* Añadir para permitir el desplazamiento horizontal si es necesario */
+  overflow-x: auto; 
 }
 
 .navbar {
@@ -210,28 +209,28 @@ footer {
   align-items: center;
   justify-content: space-between;
   height: 70px;
-  padding: 0 10px; /* Reducir el padding para ganar espacio */
+  padding: 0 10px; 
   background-color: #202020;
-  white-space: nowrap; /* Evitar el salto de línea en el menú */
+  white-space: nowrap; 
 }
 
 .navbar .nav-link {
-  padding: 0 10px; /* Reducir el padding para ganar espacio */
+  padding: 0 10px; 
   color: white;
   text-decoration: none;
-  display: inline-block; /* Asegurar que los elementos estén en línea */
+  display: inline-block; 
 }
 
 .navbar .nav-item {
-  margin-right: 10px; /* Reducir el margen para ganar espacio */
-  display: inline-block; /* Asegurar que los elementos estén en línea */
+  margin-right: 10px; 
+  display: inline-block; 
 }
 
 .navbar-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  flex-wrap: nowrap; /* Evitar que los elementos se envuelvan */
+  flex-wrap: nowrap;
 }
 
 .navbar-nav .nav-item {
@@ -245,11 +244,11 @@ footer {
 .navbar-toggler {
   border: none;
   background-color: #202020;
-  display: block; /* Asegurar que el botón siempre se muestra */
-  position: fixed; /* Fijar la posición del botón */
-  top: 15px; /* Ajustar la posición vertical según sea necesario */
-  right: 15px; /* Ajustar la posición horizontal según sea necesario */
-  z-index: 1050; /* Asegurar que esté por encima de otros elementos */
+  display: block; 
+  position: fixed; 
+  top: 15px; 
+  right: 15px; 
+  z-index: 1050; 
 }
 
 .navbar-toggler-icon {
@@ -259,11 +258,11 @@ footer {
 .navbar-collapse {
   background-color: #202020;
   width: 100%;
-  overflow-y: auto; /* Permitir desplazamiento vertical */
+  overflow-y: auto;
 }
 
 .navbar-collapse.show {
-  display: block !important; /* Asegurar que el menú se despliega */
+  display: block !important; 
 }
 
 .navbar-nav .d-lg-none .nav-item {
@@ -279,21 +278,21 @@ footer {
 }
 
 .username {
-  margin-right: 10px; /* Reducir el margen para ganar espacio */
+  margin-right: 10px; 
   color: white;
-  font-size: 0.875rem; /* Reducir el tamaño de la fuente para ganar espacio */
+  font-size: 0.875rem; 
 }
 
 .logout-button {
   background-color: #6610f2;
   border: none;
   border-radius: 5px;
-  padding: 8px 15px; /* Reducir el padding para ganar espacio */
+  padding: 8px 15px; 
   color: white;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 0.875rem; /* Reducir el tamaño de la fuente para ganar espacio */
+  font-size: 0.875rem; 
   display: inline-block;
   text-align: center;
   margin: 0;
@@ -323,7 +322,7 @@ footer {
 }
 
 .hamburger-menu {
-  display: none; /* Ocultar el menú por defecto */
+  display: none; 
 }
 
 .hamburger-menu ul {
@@ -353,7 +352,7 @@ footer {
 }
 
 .hamburger-menu.show {
-  display: block; /* Mostrar el menú cuando el botón se active */
+  display: block; 
 }
 
 .logout-button-container {
@@ -454,7 +453,6 @@ footer {
   flex-direction: column;
 }
 
-/* Ajustes para centrar y tamaño de posters en componentes FavoriteList, Watchlist, Watched */
 .movie-grid {
   display: flex;
   flex-wrap: wrap;
@@ -674,20 +672,20 @@ footer {
   }
 }
 
-/* Home Component Responsiveness */
+/* Componente Home responsivo */
 .home-container {
   padding: 20px;
 }
 
 .viewtrailer {
-  width: 100%; /* Ensure it takes the full width */
-  min-height: 300px; /* Same height as the container below */
+  width: 100%; 
+  min-height: 300px;
   background-size: cover; 
   background-position: center;
   display: flex;
   align-items: flex-end;
   padding: 20px;
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  box-sizing: border-box; 
 }
 
 .youtube-container {
@@ -798,7 +796,7 @@ footer {
     padding: 8px 12px;
   }
   .movie-card {
-    flex: 1 1 100%; /* 1 columna */
+    flex: 1 1 100%; 
     max-width: 100%;
   }
 }
@@ -912,6 +910,6 @@ footer {
 }
 @media (max-width: 992px) {
   .navbar-collapse {
-    max-height: calc(100vh - 70px); /* Limitar la altura máxima */
+    max-height: calc(100vh - 70px); 
   }
 }

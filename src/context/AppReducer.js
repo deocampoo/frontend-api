@@ -1,4 +1,3 @@
-// AppReducer.js
 export default (state, action) => {
   switch (action.type) {
     case "ADD_MOVIE_TO_WATCHLIST":
@@ -31,6 +30,13 @@ export default (state, action) => {
       return {
         ...state,
         favorites: state.favorites.filter((movie) => movie.id !== action.payload),
+      };
+    case "CLEAR_LISTS":
+      return {
+        ...state,
+        watchlist: [],
+        watched: [],
+        favorites: [],
       };
     default:
       return state;

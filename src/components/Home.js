@@ -89,7 +89,7 @@
                   <>
                   <YouTube
                   videoId={trailer.key}
-                  className="reproductor container reproductor-mobile" // Añade la clase reproductor-mobile aquí
+                  className="reproductor container reproductor-mobile" 
                   containerClassName={"youtube-container amru"}
                   opts={{
                   width: "100%",

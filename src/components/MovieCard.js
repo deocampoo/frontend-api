@@ -17,7 +17,6 @@ export const MovieCard = ({ movie, type }) => {
   );
 };
 
-// Definiendo los tipos de las propiedades esperadas
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     poster_path: PropTypes.string,

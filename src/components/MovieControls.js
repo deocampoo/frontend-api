@@ -4,31 +4,28 @@ import PropTypes from "prop-types";
 
 const MovieControls = ({ type, movie }) => {
   const {
-    addMovieToFavorites,
-    removeMovieFromFavorites,
-    addMovieToWatchlist,
     removeMovieFromWatchlist,
     addMovieToWatched,
-    removeMovieFromWatched
+    moveToWatchlist,
+    removeFromWatched,
+    removeMovieFromFavorites,
   } = useContext(GlobalContext);
 
   const handleAddClick = () => {
-    if (type === "favorites") {
-      addMovieToFavorites(movie);
-    } else if (type === "watchlist") {
-      addMovieToWatchlist(movie);
-    } else if (type === "watched") {
+    if (type === "watchlist") {
       addMovieToWatched(movie);
+    } else if (type === "watched") {
+      moveToWatchlist(movie); 
     }
   };
 
   const handleRemoveClick = () => {
-    if (type === "favorites") {
-      removeMovieFromFavorites(movie.id);
-    } else if (type === "watchlist") {
+    if (type === "watchlist") {
       removeMovieFromWatchlist(movie.id);
     } else if (type === "watched") {
-      removeMovieFromWatched(movie.id);
+      removeFromWatched(movie.id);
+    } else if (type === "favorites") {
+      removeMovieFromFavorites(movie.id);
     }
   };
 

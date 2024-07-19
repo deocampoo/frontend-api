@@ -1,5 +1,3 @@
-import {jwtDecode} from 'jwt-decode';
-
 const loginUser = async (email, password) => {
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -20,11 +18,7 @@ const loginUser = async (email, password) => {
   let jsonData = await response.json();
 
   if (response.ok) {
-    console.log("Token received: ", jsonData.token);
-    sessionStorage.setItem("token", jsonData.token); // Almacena el token en sessionStorage
-    const decoded = jwtDecode(jsonData.token);
-    console.log("Decoded token: ", decoded);
-    sessionStorage.setItem("userId", decoded.id); // Almacena el userId en sessionStorage
+    sessionStorage.setItem("access-token", jsonData.token); // Almacena el token en sessionStorage
   }
 
   return jsonData;

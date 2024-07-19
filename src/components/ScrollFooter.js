@@ -16,7 +16,7 @@ const ScrollFooter = ({ children }) => {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check the initial position
+    handleScroll(); 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };

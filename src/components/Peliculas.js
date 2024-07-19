@@ -22,8 +22,8 @@ const Peliculas = () => {
     const { data: { results } } = await axios.get(`${apiUrl}/discover/movie`, {
       params: {
         api_key: apiKey,
-        language: 'es', // Cambio de idioma a español
-        with_genres: '28', // ID del género de películas
+        language: 'es', 
+        with_genres: '28', 
       },
     });
 
